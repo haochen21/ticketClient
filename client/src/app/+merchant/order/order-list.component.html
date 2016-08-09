@@ -1,0 +1,44 @@
+<div>
+    <div class="row text-xs-center">
+        <div class="col-xs-6">
+            <small class="stats-label">今日订单</small>
+            <h4 class="stats-value">{{getTotalOrder()}}</h4>
+        </div>
+        <div class="col-xs-6">
+            <small class="stats-label">总金额</small>
+            <h4 class="stats-value"><i class="fa fa-jpy padding-right-5"></i>{{getTotalPrice() | numberFormatPipe}}</h4>
+        </div>
+    </div>
+    <div class="row text-xs-center">
+        <div class="col-xs-6 margin-top-10">
+            <small class="stats-label">未提货</small>
+            <h4 class="stats-value">{{getUnTakeNumber()}}</h4>
+        </div>
+        <div class="col-xs-6 margin-top-10">
+            <small class="stats-label">已提货</small>
+            <h4 class="stats-value">{{getTakeNumber()}}</h4>
+        </div>
+    </div>
+    <div class="margin-top-10">
+        <template ngFor let-product let-i="index" [ngForOf]="openRange.products">
+            <div class="col-xs-12">
+                <div class="panel-body">
+                    <div class="stats-title text-xs-center" >
+                        <p>{{product.name}}</p>
+                    </div>
+                    <div class="margin-top-5 row text-xs-center">
+                        <div class="col-xs-6 margin-top-10">
+                            <small class="stats-label">未提货</small>
+                            <small class="stats-value">{{product.unTakeNumber}}</small>
+                        </div>
+
+                        <div class="col-xs-6 margin-top-10">
+                            <small class="stats-label">已提货</small>
+                            <small class="stats-value">{{product.takeNumber}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</div>

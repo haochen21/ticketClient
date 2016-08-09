@@ -1,0 +1,33 @@
+.opentime-container {
+    margin-bottom: 65px;
+}
+.table-btns{
+    position: relative;
+    height: 50px;
+}
+.table-btns button{
+    position: absolute;
+    right: 10px;  
+}
+.open-time-list {
+    margin-top: 10px;
+}
+.open-label {
+    padding-left: 25px;
+    padding-top: 15px;
+}
+form .btn-group button {
+    margin-right: 10px;
+}
+.l-h-5{
+    line-height: 5;
+}
+md-slide-toggle {
+    float: right;
+}
+.md-myprimary[md-raised-button], .md-myprimary[md-fab], .md-myprimary[md-mini-fab] {
+    background-color: #0275d8;
+}
+.md-myprimary.md-checked .md-slide-toggle-thumb {
+    background-color: #0275d8;
+}

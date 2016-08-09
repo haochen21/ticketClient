@@ -1,0 +1,65 @@
+<div class="my-container">
+    <div class="user-info row">
+        <div class="user-info-detail col-xs-12">
+            <div class="login-name">
+                <div class="one">
+                    <p>用户名：</p>
+                </div>
+                <div class="two">
+                    <p>{{merchant.loginName}}</p>
+                </div>
+            </div>
+            <div class="user-level">
+                <div class="one">
+                    <p>等&nbsp;&nbsp;&nbsp;级：</p>
+                </div>
+                <div class="two">
+                    <span class="rank r4"><s></s><span>金牌会员</span></span>
+                </div>
+            </div>
+            <div class="user-email">
+                <div class="one">
+                    <p>邮&nbsp;&nbsp;&nbsp;箱：</p>
+                </div>
+                <div class="two">
+                    <p>{{merchant.mail}}</p>
+                </div>
+            </div>
+        </div>
+    </div>     
+    <div class="detail row">
+         <div class="order-number col-xs-5">
+            <div>今日订单</div>
+            <div class="number">{{cartNumber}}</div>
+        </div>
+        <div class="divide col-xs-1"></div>
+        <div class="money-number col-xs-5">
+            <div>本月收入</div>
+            <div class="number">{{earning | numberFormatPipe}}</div>
+        </div>
+    </div>
+
+    <ul id="nav" class="row">
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/modifyuser']"><i class="fa fa-info"></i><span>修改信息</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/openRange']"><i class="fa fa-clock-o ui-menu-color06"></i><span>营业时间</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/modifypassword']"><i class="fa fa-key ui-menu-color02"></i><span>修改密码</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/account']"><i class="fa fa-jpy ui-menu-color03"></i><span>我的帐户</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/category']"><i class="fa fa-object-group ui-menu-color04"></i><span>商品分类</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/product/create/-1']"><i class="fa fa-product-hunt ui-menu-color05"></i><span>添加商品</span></a>
+        </li>
+        <li class="col-xs-4 col-sm-2 menuitem">
+            <a [routerLink]="['/merchant/hiscart']"><i class="fa fa-cart-plus ui-menu-color06"></i><span>历史订单</span></a>
+        </li>
+    </ul>
+</div>

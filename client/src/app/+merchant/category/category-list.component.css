@@ -1,0 +1,24 @@
+.row {
+    display: block;
+}
+md-card {
+    margin-bottom: 0.75rem;
+}
+.list-container {
+    padding:10px 5px 0 10px;
+    margin-bottom: 65px;
+}
+.create {
+    margin-top: 45%;
+}
+.create-label {
+    padding: 8px;
+    cursor: pointer;    
+    right: 5px;
+    top: 15px;
+    position: absolute;
+}
+.btn-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

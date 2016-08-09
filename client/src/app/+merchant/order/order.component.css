@@ -1,0 +1,18 @@
+.order-container {
+    margin-right: -0.9375rem;
+    margin-left: -0.9375rem;
+}
+.table-btns{
+    position: relative;
+    height: 50px;
+}
+.table-btns button{
+    position: absolute;
+    right: 10px;  
+    top:10px;
+}
+.wrapper {
+    margin-bottom: 45px;
+    margin-top: 5px;
+    position: relative;
+}

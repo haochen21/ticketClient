@@ -1,0 +1,20 @@
+<div class="order-container">
+    <div class="table-btns">
+        <button md-mini-fab color="myprimary" (click)="refresh($event)">
+                 <md-icon fontSet="fa" fontIcon="fa-refresh"></md-icon>
+              </button>
+    </div>    
+    <div class="wrapper">
+        <tabset class="varieties-shop">
+            <tab *ngFor="let tabz of tabs" (select)="selectTab(tabz)">
+                <template tabHeading>
+                    <div>{{tabz.beginTime | dateFormatPipe:'HH:mm'}}</div>
+                    <div class="text-xs-center"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                    <div>{{tabz.endTime | dateFormatPipe:'HH:mm'}}</div>
+                </template>
+                <order-list [openRange]="tabz"></order-list>
+            </tab>
+        </tabset>
+    </div>
+    <ng2-slim-loading-bar></ng2-slim-loading-bar>
+</div>

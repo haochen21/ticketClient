@@ -1,0 +1,29 @@
+{  
+  "button":[      
+    {  
+      "type":"click",  
+      "name":"系统简介",  
+      "key":"V1001_TODAY_SINGER"  
+    },  
+    {  
+      "name":"菜单",  
+      "sub_button":[  
+        {  
+          "type":"view",  
+          "name":"消费者",  
+          "url":"http://shop.km086.com/weixin/customer"  
+        },  
+        {  
+          "type":"view",  
+          "name":"商家",  
+          "url":"http://shop.km086.com/weixin/merchant"  
+        },
+        {  
+          "type":"view",  
+          "name":"用户名",  
+          "url":"http://shop.km086.com/"  
+        }
+      ]  
+    }  
+  ]  
+}

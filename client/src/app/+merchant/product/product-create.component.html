@@ -1,0 +1,146 @@
+<div class="create-container">
+    <md-tab-group>
+        <md-tab>
+            <template md-tab-label>商品信息</template>
+            <template md-tab-content>
+                <form class="info-form tab-container" [formGroup]="form" (submit)="onSubmit($event)">
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="商品名称" formControlName="name">
+                            <control-messages [control]="form.controls.name"></control-messages>
+                            <small *ngIf="form.controls.name.pristine">长度2-20个字符</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="商品价格" formControlName="unitPrice">
+                            <control-messages [control]="form.controls.unitPrice"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">商品描述</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="2" placeholder="商品描述" formControlName="description"></textarea>
+                            <control-messages [control]="form.controls.description"></control-messages>
+                            <small *ngIf="form.controls.description.pristine">长度4-255个字符</small>
+                        </div>
+                    </div>
+                    <div class="form-group inline row">
+                        <label class="col-xs-6 form-control-label">无限库存</label>
+                        <div class="col-xs-6 text-xs-right">
+                            <md-slide-toggle color="primary" formControlName="infinite" [checked]="product.infinite" (change)="product.infinite = $event.checked">
+                            </md-slide-toggle>
+                        </div>
+                    </div>
+                    <div *ngIf="!product.infinite" class="form-group row">
+                        <label class="col-sm-2 form-control-label">数量</label>
+                        <div class="col-sm-10">
+                            <input type="test" class="form-control" placeholder="商品数量" formControlName="unitsInStock">
+                            <control-messages [control]="form.controls.unitsInStock"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group inline row">
+                        <label class="col-xs-6 form-control-label">在线支付</label>
+                        <div class="col-xs-6 text-xs-right">
+                            <md-slide-toggle color="primary" formControlName="needPay" [checked]="product.needPay" (change)="product.needPay = $event.checked">
+                            </md-slide-toggle>
+                        </div>
+                    </div>
+                    <div *ngIf="product.needPay" class="form-group row">
+                        <label class="col-sm-2 form-control-label">支付时限(分)</label>
+                        <div class="col-sm-10">
+                            <input type="test" class="form-control" formControlName="payTimeLimit">
+                            <control-messages [control]="form.controls.payTimeLimit"></control-messages>
+                            <small *ngIf="form.controls.payTimeLimit.pristine">支付时限，超过时间订单取消</small>
+                        </div>
+                    </div>
+                    <div *ngIf="!product.needPay" class="form-group row">
+                        <label class="col-sm-2 form-control-label">取货时限(分)</label>
+                        <div class="col-sm-10">
+                            <input type="test" class="form-control" formControlName="takeTimeLimit">
+                            <control-messages [control]="form.controls.takeTimeLimit"></control-messages>
+                            <small *ngIf="form.controls.takeTimeLimit.pristine">不需要在线支付，超过取货时间订单取消</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control col-sm-10" formControlName="status">
+                          <option *ngFor="let s of status;" [value]="s">{{s}}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">商品分类</label>
+                        <div class="col-sm-10">
+                            <select class="form-control col-sm-10" formControlName="category">
+                          <option *ngFor="let c of categorys;" [ngValue]="c">{{c.name}}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group submit">
+                        <button type="submit" class="btn btn-submit btn-block" [disabled]="!form.valid">完&nbsp;成</button>
+                    </div>
+                </form>
+            </template>
+        </md-tab>
+        <md-tab>
+            <template md-tab-label>图片</template>
+            <template md-tab-content>
+                <div class="upload-container" *ngIf="isCreated">
+                    <div class="card text-xs-center">
+                        <div class="card-block">
+                            <label class="btn btn-default btn-primary">
+                                  文件上传 <input type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+                                </label>
+                        </div>
+                        <div *ngFor="let item of uploader.queue">
+                            <div class="card-block">
+                                <h4 class="card-title">商品图片上传</h4>
+                                <p class="card-text">{{item.file.name}}</p>
+                                <p class="card-text">{{item.file.size/1024/1024 | number:'.2-2'}}MB</p>
+                            </div>
+                            <div class="card-block">
+                                <progress class="progress progress-success" [value]="item.progress" [max]="100"><b>{{item.progress}}%</b></progress>
+                            </div>
+                            <div class="card-block">
+                                <div *ngIf="item.file.size/1024/1024 > fileSize">
+                                    <p class="card-text">文件大小不能超过5M</p>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success btn-xs" (click)="item.upload()" [disabled]="item.file.size/1024/1024 > fileSize || item.isReady || item.isUploading || item.isSuccess">
+                            上传
+                        </button>
+                                    <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">删除</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </md-tab>
+        <md-tab>
+            <template md-tab-label>预览</template>
+            <template md-tab-content>
+                <div class="tab-container">
+                    <div class="card text-xs-center">
+                        <img *ngIf="product.imageSource" class="card-img-top" [src]="imageUrl">
+                        <div class="card-block">
+                            <h4 class="card-title">{{product.name}}</h4>
+                            <p class="card-text">{{product.description}}</p>
+                            <p class="card-text"><small class="text-muted">{{stockDescription}}</small></p>
+                        </div>
+                        <div class="card-block">
+                            <a href="#" class="btn btn-primary">加入购物车</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </md-tab>
+    </md-tab-group>
+    <ng2-toasty position="top-right"></ng2-toasty>
+    <ng2-slim-loading-bar></ng2-slim-loading-bar>
+</div>

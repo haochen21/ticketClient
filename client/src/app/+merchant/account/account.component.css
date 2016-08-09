@@ -1,0 +1,37 @@
+.account-container {
+    position: relative;
+    margin-bottom: 45px;
+}
+.row {
+    display: block;
+}
+.table-container {
+    margin-top: 10px;
+}
+.table-btns{
+    position: relative;
+    height: 50px;
+}
+.table-btns button{
+    position: absolute;
+    right: 10px;  
+}
+.md-myprimary[md-raised-button], .md-myprimary[md-fab], .md-myprimary[md-mini-fab] {
+    background-color: #0275d8;
+}
+.query-pane {
+    position: absolute;
+    top: 50px;
+    right: -0.9375rem;
+    left: -0.9375rem;
+    background:#f5f5f5;
+    z-index: 1000; 
+}
+.query-pane form {
+    padding: 20px 20px 5px 20px;
+}
+.btn-submit {
+    background: #4cc05f;
+    color: #fff;
+    font-size: 16px;
+}

@@ -1,0 +1,60 @@
+<div class="opentime-container">
+    <div class="open-time-list" *ngIf="merchant">
+        <div class="form-group row">
+            <label class="col-xs-6 form-control-label open-label">营业中</label>
+            <div class="col-xs-6 text-xs-right">
+                <md-slide-toggle color="primary" [(ngModel)]="merchant.open" (change)="modifyOpen($event)">
+                </md-slide-toggle>
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="table-btns">
+            <button md-mini-fab color="myprimary" (click)="openCreate($event)">
+               <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon>
+            </button>
+          </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let range of merchant.openRanges">
+                        <td>{{range.beginTime | dateFormatPipe:"HH:mm:ss"}}</td>
+                        <td>{{range.endTime | dateFormatPipe:"HH:mm:ss"}}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-secondary" (click)="delete(range)">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div *ngIf="creating">
+        <form (ngSubmit)="onSubmit()" #timeForm="ngForm">
+            <div class="form-group row">
+                <label class="col-xs-6 form-control-label l-h-5">开始时间</label>
+                <div class="col-xs-6">
+                    <timepicker [(ngModel)]="beginTime" name="beginTime" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-xs-6 form-control-label l-h-5">结束时间</label>
+                <div class="col-xs-6">
+                    <timepicker [(ngModel)]="endTime" name="endTime" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian" [min]="beginTime"></timepicker>
+                </div>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button md-raised-button (click)="cancel($event)">取消</button>
+                <button md-raised-button color="warn" (click)="create($event)">确认</button>
+            </div>
+        </form>
+    </div>
+    <ng2-slim-loading-bar></ng2-slim-loading-bar>
+</div>

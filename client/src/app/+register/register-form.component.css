@@ -1,0 +1,55 @@
+.registerPanel{
+    padding:0 15px;
+}
+@media (min-width: 1200px){
+  .registerPanel{
+    padding:0 255px;
+  }
+}
+.logo {
+	width: 80px;
+	height: 25px;
+	margin-top: 20px;
+}
+@media (min-width: 1200px){
+  .logo {
+    width: 170px;
+    height: 53px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}
+.account-open a {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+	display: block;
+	overflow: hidden;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 22px;
+	margin-top: 50px;
+}
+.account-open i {
+	padding-top: 20px;
+  padding-bottom: 10px;
+  display: block;
+}
+.account-open.entrance1 a {
+	background: #96db67
+}
+.account-open.entrance2 a {
+	background: #ffcc57
+}
+.account-open.entrance1 a:hover {
+	background: #7fd049
+}
+.account-open.entrance2 a:hover {
+	background: #fcb91f
+}
+.architecture {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}

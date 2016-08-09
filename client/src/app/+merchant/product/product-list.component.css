@@ -1,0 +1,6 @@
+.row {
+    display: block;
+}
+.inline.row{
+    display: flex;
+}

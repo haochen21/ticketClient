@@ -1,0 +1,113 @@
+<div class="hiscart-container">
+    <div class="table-btns">
+        <button md-mini-fab color="myprimary" (click)="openQuery($event)">
+                 <md-icon fontSet="fa" fontIcon="fa-search"></md-icon>
+              </button>
+    </div>
+    <div class="wrapper">
+        <ul class="notification-body" *ngFor="let cart of cartPage.content">
+            <li>
+                <span>
+			        <div class="bar-holder no-padding">
+				        <p class="margin-bottom-5">
+                            <strong>订单编号：</strong>
+                            <i>{{cart.no}}</i>                    
+                        </p>
+                        <div class="bar-info">
+                            <div class="bar-btn">
+                                <button type="button" class="btn btn-sm btn-secondary" (click)="showDetail(cart)">
+                                    {{cart.showDetail?'收起':'详情'}}
+                                </button>
+                            </div>
+                            <div class="note no-margin">
+                                <span>订单状态：</span>
+                <i class="fa fa-jpy text-danger padding-right-10" *ngIf="cart.needPay"></i>
+                <i class="fa fa-check text-success padding-right-10" *ngIf="!cart.needPay"></i> {{cart.status | cartStatusFormatPipe}}
+    </div>
+    <div class="note no-margin">
+        <span>商品数量：</span>
+        <span>{{getProductNumber(cart)}}</span>
+    </div>
+    <div class="note no-margin">
+        <span>生成时间：</span>
+        <span>{{cart.createdOn | dateFormatPipe:"YYYY-MM-DD HH:mm:ss"}}</span>
+    </div>
+</div>
+<div class="bar-detail" *ngIf="cart.showDetail">
+    <tabset>
+        <tab heading="订单信息">
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let cartItem of cart.cartItems">
+                        <td>{{cartItem.name}}</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{cartItem.unitPrice}}</td>
+                        <td>{{cartItem.quantity}}</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{cartItem.totalPrice}}</td>
+                    </tr>
+                    <tr class="dashed">
+                        <td colspan="3"></td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{cart.totalPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </tab>
+        <tab heading="客户信息">
+            <table class="table table-fixed">
+                <tbody>
+                    <tr>
+                        <td class="width-30">姓名</td>
+                        <td>{{cart.customer.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>卡号</td>
+                        <td>{{cart.customer.cardNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>手机</td>
+                        <td>{{cart.customer.phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>用户名</td>
+                        <td>{{cart.customer.loginName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </tab>
+    </tabset>
+</div>
+</div>
+</span>
+</li>
+</ul>
+<div class="text-xs-center margin-top-10" *ngIf="cartPage.content && !cartPage.last">
+    <button type="button" class="btn btn-secondary" (click)="queryNextPage()">下一页</button>
+</div>
+</div>
+<div class="query-pane" *ngIf="openQueryPanel">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">订单编号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="no">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">订单日期</label>
+            <div class="col-sm-10">
+                <input type="date" formControlName="date" (change)="changeQueryDate($event)" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">订单类型</label>
+            <div class="col-sm-10">
+                <input type="checkbox" formControlName="confirmed">收货中&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" formControlName="delivered">已完成
+            </div>
+        </div>
+        <div class="form-group submit">
+            <button type="submit" class="btn btn-submit btn-block">完&nbsp;成</button>
+        </div>
+    </form>
+</div>
+<ng2-slim-loading-bar></ng2-slim-loading-bar>
+</div>

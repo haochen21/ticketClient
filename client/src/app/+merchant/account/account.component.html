@@ -1,0 +1,43 @@
+<div class="account-container">    
+    <div class="row">
+        <div class="table-container">
+            <div class="table-btns">
+              <button md-mini-fab color="myprimary" (click)="openQuery($event)">
+                 <md-icon fontSet="fa" fontIcon="fa-search"></md-icon>
+              </button>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>总收入</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{getTotalPrice()}}</td>
+                    </tr>
+                    <tr *ngFor="let earningMap of earnings | mapToIterable">
+                        <td>{{earningMap.key}}</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{earningMap.val}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="query-pane" *ngIf="openQueryPanel">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">开始日期</label>
+                    <div class="col-sm-10">
+                        <input type="date" formControlName="beginDate" (change)="changeBeginDate($event)"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">结束日期</label>
+                    <div class="col-sm-10">
+                        <input type="date" formControlName="endDate" (change)="changeEndDate($event)"/>
+                    </div>
+                </div>
+                <div class="form-group submit">
+                    <button type="submit" class="btn btn-submit btn-block">完&nbsp;成</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ng2-slim-loading-bar></ng2-slim-loading-bar>
+</div>

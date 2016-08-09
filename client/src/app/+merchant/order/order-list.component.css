@@ -1,0 +1,37 @@
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.panel-body {
+    background: #fff;
+    border: 1px solid #e4e5e7;
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    margin: 5px -5px;
+}
+.stats-title h4 {
+    font-size: 12px;
+    font-weight: 600;
+}
+.stats h4, h5, h6 {
+    margin: 5px 0;
+}
+.stats-label {
+    display: block;
+}
+.stats-value {
+    margin-top: 5px;
+}
+.m-t-xl {
+    margin-top: 40px;
+}
+.m-b-xs {
+    margin-bottom: 5px;
+    color: #62cb31;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 200;
+}
