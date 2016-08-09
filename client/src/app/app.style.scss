@@ -339,7 +339,6 @@ a {
 .product-info-panel .unit-in-stock {
     border: 1px solid #f0f0f0;
     width: 70px;
-	float: right;
 }
 .datepicker-dropdown .datepicker-days {
     display: block;
@@ -349,9 +348,6 @@ md-list[dense] .md-list-item .md-list-text p {
 }
 md-tab-group .md-tab-header .md-tab-label{
     min-width: 120px;
-}
-.order-container md-tab-group .md-tab-header .md-tab-label{
-    min-width: 150px;
 }
 .inline md-slide-toggle {
     float: right;

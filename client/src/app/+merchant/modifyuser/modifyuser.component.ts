@@ -71,7 +71,7 @@ export class MerchantModifyComponent implements OnInit {
 
     this.securityService.modifyMerchant(merchant).then(user => {
       localStorage.setItem('user', JSON.stringify(user));
-      window.history.back();
+      this.router.navigate(['/merchant']);
     }).catch(error => {
       console.log(error)
     });

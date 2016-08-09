@@ -42,7 +42,7 @@ export class LoginFormComponent implements OnInit {
                     this.passwordError = false;
                     localStorage.setItem('user', JSON.stringify(loginResult.user));                   
                     if (loginResult.user.type === 'M') {
-                        this.router.navigate(['/merchant/my']);
+                        this.router.navigate(['/merchant']);
                     }else if (loginResult.user.type === 'C') {
                         this.router.navigate(['/customer']);
                     }

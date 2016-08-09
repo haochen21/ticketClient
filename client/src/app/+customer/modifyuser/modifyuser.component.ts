@@ -62,7 +62,7 @@ export class CustomerModifyComponent implements OnInit {
 
     this.securityService.modifyCustomer(customer).then(user => {
       localStorage.setItem('user', JSON.stringify(user));      
-      window.history.back();
+      this.router.navigate(['/customer']);
     }).catch(error => {
       console.log(error)
     });

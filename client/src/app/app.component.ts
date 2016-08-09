@@ -2,7 +2,6 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router }    from '@angular/router';
 
 import { AppState } from './app.service';
 
@@ -24,41 +23,13 @@ require("font-awesome-webpack");
 export class App {
 
   constructor(
-    private router: Router,
     public appState: AppState) {
 
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-    console.log(window.location.href);
-    let type = this.getParaValue('type');
-    console.log(type);
-    let verify = this.getParaValue('verify');
-    console.log(verify);
-    if (type === 'C') {
-      if (verify === 'true') {
-        this.router.navigate(['/customer/modifyuser']);
-      } else {
-        this.router.navigate(['/customer']);
-      }
-    } else if (type === 'M') {
-      if (verify === 'true') {
-        this.router.navigate(['/merchant/modifyuser']);
-      } else {
-        this.router.navigate(['/merchant']);
-      }
-    }
-  }
-
-  getParaValue(paraName: string) {
-    var results = new RegExp('[\?&]' + paraName + '=([^&#]*)').exec(window.location.href);
-    if (results) {
-      return results[1];
-    } else {
-      return null;
-    }
-  }
+    console.log('Initial App State', this.appState.state);    
+  }  
 }
 
 /*
