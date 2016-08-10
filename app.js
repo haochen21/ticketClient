@@ -23,6 +23,7 @@ ticketSocket.initialize(io);
 
 stompMessage.initialize(io);
 
+app.use('/ticket', express.static(__dirname + '/client/dist'));
 app.use(express.static(__dirname + '/client/dist'));
 
 app.use(expressSession({

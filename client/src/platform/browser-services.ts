@@ -3,6 +3,8 @@ import { SecurityService } from '../service/security.service';
 import { SocketService } from '../service/socket.service';
 import { StoreService } from '../service/store.service';
 import { ValidationService } from '../service/validation.service';
+import { WeixinService } from '../service/weixin.service';
+
 
 // application_services: services that are global through out the application
 export const APPLICATION_SERVICES = [

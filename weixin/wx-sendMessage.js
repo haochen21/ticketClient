@@ -8,6 +8,10 @@ const UNPAIDTEMPLATE = '6XyBGszgnetQTR_vYGh7OYHltPXV8yR8Kz4uevgri0k';
 const DELIVEREDTEMPLATE = 'E49gjhslP7_i4lA-5Vz4rgYkFMw5ZwLq6jLzOx-u_Wo';
 const TAKETEMPLATE = 'ugwsoSOpz6uWUmEZxUmfW3abruUK7c7Rr8M4zGDGssg';
 
+exports.getLatestToken = function (callback) {
+    api.getLatestToken(callback);
+}
+
 exports.sendMessage = function (cart) {
     var openId = cart.customer.openId;
     if (openId) {
@@ -16,7 +20,7 @@ exports.sendMessage = function (cart) {
         if (cart.status === 3) { //CONFIRMED
             templateId = TAKETEMPLATE;
             data = createTakeStr(cart);
-        }else if (cart.status === 4) { //DELIVERED
+        } else if (cart.status === 4) { //DELIVERED
             templateId = DELIVEREDTEMPLATE;
             data = createDeliverStr(cart);
         }
@@ -53,7 +57,7 @@ function createDeliverStr(cart) {
     var json = {};
     json.first = {};
     json.first.value = '尊敬的用户您好，您的订单已完成。';
-    json.first.color = '#173177';    
+    json.first.color = '#173177';
 
     json.keyword1 = {};
     json.keyword1.value = cart.no;
@@ -63,8 +67,8 @@ function createDeliverStr(cart) {
     json.keyword2.value = updatedOn.format('YYYY-MM-DD HH:mm:ss');
 
     json.remark = {};
-    var phone = cart.merchant.phone ? cart.merchant.phone :'';
-    json.remark.value = '如有任何疑问，请拨打商家电话：'+phone;
+    var phone = cart.merchant.phone ? cart.merchant.phone : '';
+    json.remark.value = '如有任何疑问，请拨打商家电话：' + phone;
 
     return json;
 }
@@ -73,7 +77,7 @@ function createTakeStr(cart) {
     var json = {};
     json.first = {};
     json.first.value = '尊敬的用户您好，您的订单已下单。';
-    json.first.color = '#173177';    
+    json.first.color = '#173177';
 
     json.OrderSn = {};
     json.OrderSn.value = cart.no;
@@ -84,8 +88,8 @@ function createTakeStr(cart) {
 
     json.remark = {};
     var takeTime = moment(new Date().setTime(cart.takeTime));
-    var phone = cart.merchant.phone ? cart.merchant.phone :'';
-    json.remark.value = '请在以下时间取货：'+takeTime.format('YYYY-MM-DD HH:mm:ss')+'，如有任何疑问，请拨打商家电话：'+phone;
+    var phone = cart.merchant.phone ? cart.merchant.phone : '';
+    json.remark.value = '请在以下时间取货：' + takeTime.format('YYYY-MM-DD HH:mm:ss') + '，如有任何疑问，请拨打商家电话：' + phone;
 
     return json;
 }

@@ -13,6 +13,7 @@ import { CartStatusFormatPipe } from '../../../pipe/CartStatus.pipe';
 import { OrderService } from '../../../service/order.service';
 import { SecurityService } from '../../../service/security.service';
 import { SocketService } from '../../../service/socket.service';
+import { WeixinService } from '../../../service/weixin.service';
 
 import { Customer } from '../../../model/Customer';
 import { Cart } from '../../../model/Cart';
@@ -20,10 +21,12 @@ import { CartPage } from '../../../model/CartPage';
 import { CartStatus } from '../../../model/CartStatus';
 import { CartFilter } from '../../../model/CartFilter';
 
+var wx = require('weixin-js-sdk');
+
 @Component({
     selector: 'customer-order',
     directives: [MD_TABS_DIRECTIVES, MD_BUTTON_DIRECTIVES, SlimLoadingBar],
-    providers: [OrderService, SocketService],
+    providers: [OrderService, SocketService, WeixinService],
     pipes: [DateFormatPipe, CartStatusFormatPipe],
     templateUrl: './order.component.html',
     styleUrls: ['./order.component.css']
@@ -42,6 +45,8 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
 
     selectedTab: number = 0;
 
+    WeixinJSBridge: any;
+
     tabs = [
         { label: '待付款' },
         { label: '待收货' },
@@ -54,12 +59,14 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
         private orderService: OrderService,
         private securityService: SecurityService,
         private socketService: SocketService,
+        private weixinService: WeixinService,
         private route: ActivatedRoute,
         private slimLoader: SlimLoadingBarService) {
 
     }
 
     ngOnInit() {
+
         this.sub = this.route.params.subscribe(params => {
             let needPay = +params['needPay'];
             if (needPay === 1) {
@@ -172,19 +179,23 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
 
     paying(cart: Cart) {
         this.slimLoader.start();
-        this.orderService.paying(cart.id).then(value => {
-            console.log(value);
-            return this.orderService.paid(cart.id);
-        }).then(value => {
-            console.log(value);
-            this.selectedTab = 1;
-            this.refresh();
-            this.slimLoader.complete();
+        this.weixinService.getInfo(cart).then(payargs => {
+            this.WeixinJSBridge.invoke('getBrandWCPayRequest', payargs, function (res) {
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    alert("支付成功");
+                    // 这里可以跳转到订单完成页面向用户展示
+                } else {
+                    alert("支付失败，请重试");
+                }
+                this.slimLoader.complete();
+                this.selectedTab = 1;
+                this.refresh();
+            });
         }).catch(error => {
             console.log(error);
             this.slimLoader.complete();
         });
-    }
+    }    
 
     deliver(cart: Cart) {
         this.slimLoader.start();
