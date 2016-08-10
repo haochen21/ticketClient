@@ -22,7 +22,7 @@ export const routes = {
     { path: 'cartbill/:merchantId', component: CustomerCartBillComponent },
     { path: 'merchant', component: CustomerMerchantComponent },
     { path: 'category/:merchantId', component: CustomerCategoryComponent },
-    { path: 'order', component: CustomerOrderComponent },
+    { path: 'order/:needPay', component: CustomerOrderComponent },
     { path: 'product', component: CustomerProductComponent },
   ]
 };

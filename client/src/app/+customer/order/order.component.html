@@ -1,5 +1,5 @@
 <div class="order-container">
-    <md-tab-group class="tab-group" (selectChange)="tabChange($event)">
+    <md-tab-group class="tab-group" [selectedIndex]="selectedTab" (selectChange)="tabChange($event)">
         <md-tab *ngFor="let tab of tabs">
             <template md-tab-label>{{tab.label}}</template>
             <template md-tab-content>
@@ -31,6 +31,10 @@
                                         <div class="note no-margin">
                                             <span>生成时间：</span>
                                             <span>{{cart.createdOn | dateFormatPipe:"YYYY-MM-DD HH:mm:ss"}}</span>
+                                        </div>
+                                        <div class="note no-margin">
+                                            <span>取货时间：</span>
+                                            <span>{{cart.takeTime | dateFormatPipe:"YYYY-MM-DD HH:mm:ss"}}</span>
                                         </div>
                                         <div class="note no-margin text-danger" *ngIf="cart.status === 0">
                                             <span>支付时限：</span>

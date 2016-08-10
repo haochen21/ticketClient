@@ -6,10 +6,10 @@ var app = express();
 app.use(favicon(__dirname + '/client/dist/assets/icon/favicon-32x32.png'));
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
+var RedisStore = require('connect-redis')(expressSession);
 
-
+var config = require('./config');
 var weixin = require('./weixin');
-
 var service = require('./service');
 
 var ticketSocket = require('./message/socket');
@@ -26,9 +26,15 @@ stompMessage.initialize(io);
 app.use(express.static(__dirname + '/client/dist'));
 
 app.use(expressSession({
+    store: new RedisStore({
+        host: config.redisIp,
+        port: config.redisPort,
+        db: 1,
+        logErrors: true
+    }),
     secret: '1234567890QWERTY',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
 app.use(bodyParser.json());
@@ -63,10 +69,10 @@ router.use('/user/*', checkLogin);
 router.use('/cart/*', checkLogin);
 router.use('/product/*', checkLogin);
 
-function checkLogin(req,res,next){
-    if(req.session && req.session.user){
+function checkLogin(req, res, next) {
+    if (req.session && req.session.user) {
         return next();
-    }else{
+    } else {
         res.redirect('/');
     }
 }
@@ -82,7 +88,7 @@ router.route('/cardExists/:cardNo')
 router.route('/user')
     .get(service.security.findUser);
 router.route('/user/:id')
-    .get(service.security.findUserById);    
+    .get(service.security.findUserById);
 router.route('/merchant')
     .post(service.security.createMerchant)
     .put(service.security.modifyMerchant);
@@ -95,8 +101,8 @@ router.route('/customer/merchant')
     .get(service.security.findMechantsOfCustomer)
     .post(service.security.saveMerchantsOfCustomer);
 router.route('/customer/merchant/size')
-    .get(service.security.countMechantsOfCustomer)    
-router.route('/password',checkLogin)
+    .get(service.security.countMechantsOfCustomer)
+router.route('/password', checkLogin)
     .put(service.security.modifyPassword);
 router.route('/merchant/open')
     .put(service.security.modifyOpen);
@@ -104,7 +110,7 @@ router.route('/merchant/openRange')
     .get(service.security.findOpenRange)
     .post(service.security.createOpenRange);
 router.route('/merchant/openRange/:id')
-    .get(service.security.findOpenRangeByMerchantId);    
+    .get(service.security.findOpenRangeByMerchantId);
 
 router.route('/category')
     .post(service.store.createCategory)
@@ -116,7 +122,7 @@ router.route('/category/:id')
 router.route('/category/find/merchant')
     .get(service.store.findCategoryByMerchant);
 router.route('/category/find/merchant/:merchantId')
-    .get(service.store.findCategoryByMerchantId);    
+    .get(service.store.findCategoryByMerchantId);
 
 router.route('/product')
     .post(service.store.createProduct)
@@ -126,7 +132,7 @@ router.route('/product/:id')
 router.route('/product/find/merchant')
     .get(service.store.findProductByMerchant);
 router.route('/product/find/merchant/:merchantId')
-    .get(service.store.findProductByMerchantId);    
+    .get(service.store.findProductByMerchantId);
 
 router.route('/cart/page')
     .post(service.order.pageCartByFilter);

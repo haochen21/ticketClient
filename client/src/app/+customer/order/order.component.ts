@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
 
@@ -47,30 +48,45 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
         { label: '已完成' }
     ];
 
+    private sub: any;
+
     constructor(
         private orderService: OrderService,
         private securityService: SecurityService,
         private socketService: SocketService,
+        private route: ActivatedRoute,
         private slimLoader: SlimLoadingBarService) {
 
     }
 
     ngOnInit() {
-        this.slimLoader.start();
+        this.sub = this.route.params.subscribe(params => {
+            let needPay = +params['needPay'];
+            if (needPay === 1) {
+                this.selectedTab = 0;
+            } else {
+                this.selectedTab = 1;
+            }
 
-        this.securityService.findUser().then(user => {
-            this.customer = <Customer>user;
-            this.connectWebSocket();
-            this.refresh();
-            this.slimLoader.complete();
-        }).catch(error => {
-            console.log(error);
-            this.slimLoader.complete();
+            this.slimLoader.start();
+
+            this.securityService.findUser().then(user => {
+                this.customer = <Customer>user;
+                this.connectWebSocket();
+
+                this.refresh();
+                this.slimLoader.complete();
+            }).catch(error => {
+                console.log(error);
+                this.slimLoader.complete();
+            });
         });
+
     }
 
     ngOnDestroy() {
         this.connection.unsubscribe();
+        this.sub.unsubscribe();
     }
 
     tabChange(event) {
@@ -161,6 +177,8 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
             return this.orderService.paid(cart.id);
         }).then(value => {
             console.log(value);
+            this.selectedTab = 1;
+            this.refresh();
             this.slimLoader.complete();
         }).catch(error => {
             console.log(error);
@@ -172,6 +190,8 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
         this.slimLoader.start();
         this.orderService.deliver(cart.id).then(value => {
             console.log(value);
+            this.selectedTab = 2;
+            this.refresh();
             this.slimLoader.complete();
         }).catch(error => {
             console.log(error);

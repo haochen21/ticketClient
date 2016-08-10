@@ -166,7 +166,8 @@ export class CustomerCartBillComponent implements OnInit, OnDestroy {
             if (this.orderResult.result) {
                 this.carts = this.carts.filter(c => c.merchant.id !== this.cart.merchant.id);
                 localStorage.setItem('carts', JSON.stringify(this.carts));
-                this.router.navigate(['/customer/order']);
+                let needPay = this.orderResult.cart.needPay ? 1 : 0;
+                this.router.navigate(['/customer/order', needPay]);
             }
             this.slimLoader.complete();
         }).catch(error => {

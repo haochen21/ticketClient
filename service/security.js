@@ -4,6 +4,7 @@ var config = require("../config");
 exports.login = function (req, res) {
     let loginName = req.body.loginName;
     let password = req.body.password;
+    var session = req.session;
     //res.status(200).send(loginResult);
     request.post({
         url: config.remoteServer + '/security/login',
@@ -21,8 +22,8 @@ exports.login = function (req, res) {
             loginResult.result = loginObj.loginResult;
 
             if (loginObj.result === 'AUTHORIZED') {
-                req.session.auth = true;
-                req.session.user = loginObj.user;
+                session.auth = true;
+                session.user = loginObj.user;
             }
             res.status(200).send(body);
         }

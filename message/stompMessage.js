@@ -2,6 +2,7 @@ var stompit = require('stompit');
 
 var socket = require('./socket');
 var config = require('../config');
+var weixinSendMessage = require('../weixin/wx-sendMessage');
 
 var io = null;
 
@@ -54,6 +55,7 @@ exports.initialize = function (io) {
                         }
                     }
                 }
+                weixinSendMessage.sendMessage(cartJson);
             });
         });
     });
