@@ -10,18 +10,18 @@
       "sub_button":[  
         {  
           "type":"view",  
-          "name":"消费者",  
+          "name":"消费者1",  
           "url":"http://shop.km086.com/weixin/customer"  
         },  
         {  
           "type":"view",  
-          "name":"商家",  
+          "name":"商家1",  
           "url":"http://shop.km086.com/weixin/merchant"  
         },
         {  
           "type":"view",  
-          "name":"用户名",  
-          "url":"http://shop.km086.com/ticket"  
+          "name":"用户名1",  
+          "url":"http://shop.km086.com/ticket/index.html"  
         }
       ]  
     }  

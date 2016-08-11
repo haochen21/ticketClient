@@ -72,7 +72,7 @@ module.exports = webpackMerge(commonConfig, {
      *
      * See: http://webpack.github.io/docs/configuration.html#output-filename
      */
-    filename: 'ticket/[name].bundle.js',
+    filename: '[name].bundle.js',
 
     /**
      * The filename of the SourceMaps for the JavaScript files.
@@ -80,14 +80,14 @@ module.exports = webpackMerge(commonConfig, {
      *
      * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
      */
-    sourceMapFilename: 'ticket/[name].map',
+    sourceMapFilename: '[name].map',
 
     /** The filename of non-entry chunks as relative path
      * inside the output.path directory.
      *
      * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
      */
-    chunkFilename: 'ticket/[id].chunk.js',
+    chunkFilename: '[id].chunk.js',
 
     library: 'ac_[name]',
     libraryTarget: 'var',

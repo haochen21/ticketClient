@@ -1,7 +1,11 @@
+///<reference path="../../../../typings/wx/index.d.ts"/>
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
+
+import * as wx from 'wx';
 
 import { MD_TABS_DIRECTIVES } from '@angular2-material/tabs/tabs';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
@@ -21,7 +25,7 @@ import { CartPage } from '../../../model/CartPage';
 import { CartStatus } from '../../../model/CartStatus';
 import { CartFilter } from '../../../model/CartFilter';
 
-var wx = require('weixin-js-sdk');
+
 
 @Component({
     selector: 'customer-order',
@@ -43,10 +47,8 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
 
     connection: any;
 
-    selectedTab: number = 0;
-
-    WeixinJSBridge: any;
-
+    selectedTab: number = 0;  
+    
     tabs = [
         { label: '待付款' },
         { label: '待收货' },
@@ -87,6 +89,13 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
                 console.log(error);
                 this.slimLoader.complete();
             });
+        });
+
+        this.weixinService.getJsConfig().then(data => {
+            wx.config(data);            
+        }).catch(error => {
+            console.log(error);
+            this.slimLoader.complete();
         });
 
     }
@@ -180,22 +189,32 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
     paying(cart: Cart) {
         this.slimLoader.start();
         this.weixinService.getInfo(cart).then(payargs => {
-            this.WeixinJSBridge.invoke('getBrandWCPayRequest', payargs, function (res) {
-                if (res.err_msg == "get_brand_wcpay_request:ok") {
-                    alert("支付成功");
-                    // 这里可以跳转到订单完成页面向用户展示
-                } else {
-                    alert("支付失败，请重试");
+            wx.chooseWXPay({
+                appId: payargs.appId,
+                timestamp: payargs.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: payargs.nonceStr, // 支付签名随机串，不长于 32 位
+                package: payargs.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                signType: payargs.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: payargs.paySign, // 支付签名
+                success: function (res) {
+                    if (res.errMsg == "chooseWXPay:ok") {
+                        //支付成功
+                    } else {
+                        alert(res.errMsg);
+                    }
+                    this.slimLoader.complete();
+                    this.selectedTab = 1;
+                    this.refresh();
+                },
+                cancel: function (res) {
+                    //支付取消
                 }
-                this.slimLoader.complete();
-                this.selectedTab = 1;
-                this.refresh();
             });
         }).catch(error => {
             console.log(error);
             this.slimLoader.complete();
         });
-    }    
+    }
 
     deliver(cart: Cart) {
         this.slimLoader.start();

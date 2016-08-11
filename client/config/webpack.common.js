@@ -294,6 +294,7 @@ module.exports = {
     module: false,
     clearImmediate: false,
     setImmediate: false
-  }
+  },
 
+  externals: { 'wx': 'jWeixin' }
 };

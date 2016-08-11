@@ -164,5 +164,5 @@ app.use(errorHandler);
 
 
 server.listen(80, function () {
-    console.info('server listening on port 3000');
+    console.info('server listening on port 80');
 });    

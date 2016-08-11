@@ -102,3 +102,5 @@ function sendResult(err, result) {
         console.log(result);
     }
 }
+
+exports.api = api;

@@ -5,6 +5,8 @@ var router = express.Router();
 var fs = require('fs');
 var get_ip = require('ipware')().get_ip;
 
+var wechatApi = require('./wx-sendMessage').api;
+
 var middleware = require('wechat-pay').middleware;
 var Payment = require('wechat-pay').Payment;
 
@@ -18,6 +20,21 @@ var initConfig = {
 };
 var payment = new Payment(initConfig);
 
+/** 
+ * 支付 
+ **/
+router.get('/jsconfig', function (req, res) {
+    var param = {
+        debug: true,
+        jsApiList: ['chooseWXPay'],
+        url: 'http://shop.km086.com'
+    };
+    wechatApi.getJsConfig(param, function (err, result) {
+        console.log(result);
+        res.json(result);
+    });
+
+});
 
 /** 
  * 支付 

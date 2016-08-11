@@ -10,6 +10,15 @@ export class WeixinService {
 
     constructor(
         private http: Http) { }
+    
+    getJsConfig(): Promise<any> {
+         return this.http.get('weixin/pay/jsconfig')
+            .toPromise()
+            .then(response => {
+                return response.json();
+            })
+            .catch(this.handleError);
+    }
 
     getInfo(cart: Cart): Promise<any> {
         let body = JSON.stringify({ cart });
