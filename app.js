@@ -1,9 +1,7 @@
 var express = require('express');
-var favicon = require('serve-favicon');
 var http = require('http');
 var socketio = require('socket.io');
 var app = express();
-app.use(favicon(__dirname + '/client/dist/assets/icon/favicon-32x32.png'));
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var RedisStore = require('connect-redis')(expressSession);
@@ -23,7 +21,6 @@ ticketSocket.initialize(io);
 
 stompMessage.initialize(io);
 
-app.use('/ticket', express.static(__dirname + '/client/dist'));
 app.use(express.static(__dirname + '/client/dist'));
 
 app.use(expressSession({
@@ -167,5 +164,5 @@ app.use(errorHandler);
 
 
 server.listen(80, function () {
-    console.info('server listening on port 80');
+    console.info('server listening on port 3000');
 });    

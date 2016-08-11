@@ -19,7 +19,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
  */
 const METADATA = {
   title: '康萌预约宝',
-  baseUrl: '/',
+  baseUrl: '/ticket',
   isDevServer: helpers.isWebpackDevServer()
 };
 
@@ -250,6 +250,7 @@ module.exports = {
      */
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      filename: 'ticket/index.html',
       chunksSortMode: 'dependency'
     }),
 

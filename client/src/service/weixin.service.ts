@@ -15,7 +15,7 @@ export class WeixinService {
         let body = JSON.stringify({ cart });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('api/weixin/pay/info', body, options)
+        return this.http.post('weixin/pay/info', body, options)
             .toPromise()
             .then(response => {
                 return response.json();

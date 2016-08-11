@@ -69,7 +69,7 @@ router.get('/callback', function (req, res) {
               console.log(result);
               req.session.auth = false;
               req.session.user = void 0;
-              res.redirect('/#/merchant/modifyuser');
+              res.redirect('/ticket#/merchant/modifyuser');
             }
           });
 
@@ -81,9 +81,9 @@ router.get('/callback', function (req, res) {
         // if phone_number exist,go home page
         // if phone_number exist,go home page
         if (user.phone) {
-          res.redirect('/#/merchant');
+          res.redirect('/ticket#/merchant');
         } else {
-          res.redirect('/#/merchant/modifyuser');
+          res.redirect('/ticket#/merchant/modifyuser');
         }
       }
     });
