@@ -25,9 +25,10 @@ exports.sendMessage = function (cart) {
             data = createDeliverStr(cart);
         }
 
-
-        console.log('weixing message: ' + JSON.stringify(data));
-        api.sendTemplate(openId, templateId, null, data, sendResult);
+        if (templateId !== '') {
+            console.log('weixing message: ' + JSON.stringify(data));
+            api.sendTemplate(openId, templateId, null, data, sendResult);
+        }
     }
 
 }

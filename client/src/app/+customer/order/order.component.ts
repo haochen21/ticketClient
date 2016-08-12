@@ -187,6 +187,7 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
     }
 
     paying(cart: Cart) {
+        let _thisObj = this;
         this.slimLoader.start();
         this.weixinService.getInfo(cart).then(payargs => {
             wx.chooseWXPay({
@@ -199,15 +200,18 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
                 success: function (res) {
                     if (res.errMsg == "chooseWXPay:ok") {
                         //支付成功
+                        alert('pay result: 1');
+                        _thisObj.slimLoader.complete();                        
+                        alert('pay result: 2');
+                        this.selectedTab = 1;
+                        this.refresh();
                     } else {
-                        alert(res.errMsg);
-                    }
-                    this.slimLoader.complete();
-                    this.selectedTab = 1;
-                    this.refresh();
+                        alert('支付失败');
+                        _thisObj.slimLoader.complete();
+                    }                    
                 },
                 cancel: function (res) {
-                    //支付取消
+                    _thisObj.slimLoader.complete();
                 }
             });
         }).catch(error => {

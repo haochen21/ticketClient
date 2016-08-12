@@ -19,7 +19,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
  */
 const METADATA = {
   title: '康萌预约宝',
-  baseUrl: '/ticket',
+  baseUrl: '/ticket?',
   isDevServer: helpers.isWebpackDevServer()
 };
 
