@@ -200,11 +200,9 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
                 success: function (res) {
                     if (res.errMsg == "chooseWXPay:ok") {
                         //支付成功
-                        alert('pay result: 1');
-                        _thisObj.slimLoader.complete();                        
-                        alert('pay result: 2');
-                        this.selectedTab = 1;
-                        this.refresh();
+                       _thisObj.slimLoader.complete();                        
+                       _thisObj.selectedTab = 1;
+                       _thisObj.refresh();
                     } else {
                         alert('支付失败');
                         _thisObj.slimLoader.complete();
