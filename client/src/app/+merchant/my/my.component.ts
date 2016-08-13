@@ -88,6 +88,8 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
   statCartEarning() {
     let filter: CartFilter = new CartFilter();
 
+    filter.merchantId = this.merchant.id;
+    
     let beginDate: moment.Moment = moment(new Date());
     beginDate.hours(0).minutes(0).seconds(0).milliseconds(0);
     let createTimeAfter: Date = beginDate.toDate();
@@ -103,6 +105,8 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
     statuses.push(CartStatus.DELIVERED);
     filter.statuses = statuses;
 
+    filter.weixinPaid = true;
+    
     filter.needPay = true;
 
     this.orderService.statCartEarningByStatus(filter).then(value => {

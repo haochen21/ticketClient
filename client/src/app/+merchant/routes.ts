@@ -13,6 +13,7 @@ import { ProductListComponent } from './product/product-list.component';
 import { HisCartComponent } from './hiscart/hiscart.component';
 import { MerchantCartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
+import { MerchantLockComponent } from './lock/lock.component';
 
 // async components must be named routes for WebpackAsyncRoute
 export const routes = {
@@ -21,6 +22,7 @@ export const routes = {
     { path: '', component: OrderComponent },
     { path: 'my', component: MerchantMyComponent },
     { path: 'modifyuser', component: MerchantModifyComponent },
+    { path: 'lock', component: MerchantLockComponent },
     { path: 'openRange',  component: OpenTimeComponent },
     { path: 'account', component: AccountComponent },
     { path: 'cart', component: MerchantCartComponent },

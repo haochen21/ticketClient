@@ -95,6 +95,20 @@ export class SecurityService {
             .catch(this.handleError);
     }
 
+    modifyCustomerPhone(phone: String): Promise<any> {
+        let params = {
+            phone: phone
+        }
+
+        return this.http.put('api/customer/modifyPhone', params)
+            .toPromise()
+            .then(response => {
+                return Promise.resolve();
+            })
+            .catch(this.handleError);
+    }
+
+
     modifyPassword(password: String): Promise<any> {
         let params = {
             password: password
@@ -177,6 +191,19 @@ export class SecurityService {
         return this.http.get('api/customer/merchant')
             .toPromise()
             .then(response => {
+                return response.json();
+            })
+            .catch(this.handleError);
+    }
+
+    merchantLock(password: String): Promise<any> {
+        let params = {
+            password: password
+        }
+
+        return this.http.post('api/merchant/lock', params)
+            .toPromise()
+            .then(response => {               
                 return response.json();
             })
             .catch(this.handleError);

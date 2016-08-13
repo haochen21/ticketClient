@@ -32,6 +32,9 @@ p.prompt {
 .customer-register-form .input-text-box.input-text-box1 .form-control {
     padding: 6px 10px 6px 32px;
 }
+.customer-register-form .input-text-box.input-text-box1 label {
+    padding-left: 32px;
+}
 .customer-register-form .input-text-box .form-control {
     height: 44px;
     border: 0px;

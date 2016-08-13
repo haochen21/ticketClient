@@ -91,7 +91,7 @@ function createTakeStr(cart) {
     var takeBeginTime = moment(new Date().setTime(cart.takeBeginTime));
     var takeEndTime = moment(new Date().setTime(cart.takeEndTime));
     var phone = cart.merchant.phone ? cart.merchant.phone : '';
-    json.remark.value = '请在以下时间取货：' + takeBeginTime.format('HH:mm:ss') + ' - ' + takeEndTime.format('HH:mm:ss') + '，如有任何疑问，请拨打商家电话：' + phone;
+    json.remark.value = '请在以下时间取货：' + takeBeginTime.format('YYYY-MM-DD HH:mm:ss') + ' - ' + takeEndTime.format('HH:mm:ss') + '，如有任何疑问，请拨打商家电话：' + phone;
 
     return json;
 }

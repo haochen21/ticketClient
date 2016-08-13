@@ -34,3 +34,20 @@ a, a:hover, a:link {
 .m0 {
     margin: 0 auto;
 }
+.cart {
+    position: relative;
+}
+.cart-count {
+    position: absolute;
+    min-width: 16px;
+    height: 16px;
+    top: -3px;
+    background-color: #d22147;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    padding: 0 4px;
+}

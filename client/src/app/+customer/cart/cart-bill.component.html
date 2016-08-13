@@ -66,8 +66,8 @@
                 <div class="form-group" *ngIf="orderResult && !orderResult.result">
                     <span class="col-xs-12 form-control-label order-error">{{orderResult.error}}</span>
                 </div>
-                <div class="form-group text-danger" *ngIf="cartTakeTime.length === 0">
-                    <span class="col-xs-12 form-control-label order-error">购买时间超过商家当天营业时间</span>
+                <div class="form-group text-danger" *ngIf="nextDay">
+                    <span class="col-xs-12 form-control-label order-error">购买时间超过商家当天营业时间,请选购下一天</span>
                 </div>
                 <button md-raised-button color="warn" [disabled]="cartTakeTime.length === 0 || !form.valid">提交订单</button>
             </form>

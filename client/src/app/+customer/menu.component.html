@@ -12,16 +12,16 @@
             <div>购物车</div>
         </a>
     </div>    
-    <div class="col-xs-3 pt5 pb5 meun" (click)="menuClick('order')">
+    <div class="col-xs-3 pt5 pb5 meun order" (click)="menuClick('order')">
         <a [routerLink]="['/customer/order/1']" [class.active]="isOrder" class="block black posr">
             <div class="icon m0"><i class="fa fa-cart-arrow-down fa-fw"></i></div>
-            <div>订单</div>
+            <div>订单<span class="cart-count1"></span></div>
         </a>
     </div>    
     <div class="col-xs-3 pt5 pb5 meun" (click)="menuClick('my')">
         <a [routerLink]="['/customer/my']"  [class.active]="isMy" class="block black">
             <div class="icon m0"><i class="fa fa-user fa-fw"></i></div>
-            <div>我</div>
+            <div>账户</div>
         </a>
     </div>
 </div>

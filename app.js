@@ -4,6 +4,7 @@ var socketio = require('socket.io');
 var app = express();
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
+var compression = require('compression');
 var RedisStore = require('connect-redis')(expressSession);
 
 var config = require('./config');
@@ -20,6 +21,8 @@ io.set("origins", "*:*");
 ticketSocket.initialize(io);
 
 stompMessage.initialize(io);
+
+//app.use(compression());  
 
 app.use(express.static(__dirname + '/client/dist'));
 app.use(express.static(__dirname + '/customer/dist'));
@@ -96,6 +99,8 @@ router.route('/merchant/name/:name')
 router.route('/customer')
     .post(service.security.createCustomer)
     .put(service.security.modifyCustomer);
+router.route('/customer/modifyPhone', checkLogin)
+    .put(service.security.modifyCustomerPhone);    
 router.route('/customer/merchant')
     .get(service.security.findMechantsOfCustomer)
     .post(service.security.saveMerchantsOfCustomer);
@@ -105,6 +110,8 @@ router.route('/password', checkLogin)
     .put(service.security.modifyPassword);
 router.route('/merchant/open')
     .put(service.security.modifyOpen);
+router.route('/merchant/lock')
+    .post(service.security.merchantLock);    
 router.route('/merchant/openRange')
     .get(service.security.findOpenRange)
     .post(service.security.createOpenRange);

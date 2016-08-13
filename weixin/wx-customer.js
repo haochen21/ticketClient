@@ -65,11 +65,11 @@ router.get('/callback', function (req, res) {
             if (err) {
               console.log('Customer save error ....' + err);
             } else {
-              console.log('Customer save sucess ....');
+              console.log('Customer save sucess ....'+result);
               console.log(result);
-              req.session.auth = false;
-              req.session.user = void 0;
-              res.redirect('/customer?#/customer/modifyuser');
+              req.session.auth = true;
+              req.session.user = JSON.parse(result);
+              res.redirect('/?#/customer/modifyphone');
             }
           });
 
@@ -80,9 +80,9 @@ router.get('/callback', function (req, res) {
         req.session.user = user;
         // if phone_number exist,go home page
         if (user.phone) {
-          res.redirect('/customer?#/customer');
+          res.redirect('/?#/customer');
         } else {
-          res.redirect('/customer?#/customer/modifyuser');
+          res.redirect('/?#/customer/modifyphone');
         }
       }
     });

@@ -167,7 +167,7 @@ export class ValidationService {
     }
 
     static phoneValidator(control: FormControl) {
-        if (typeof control.value !== "function") {
+        if (typeof control.value === "function") {
             return null;
         } else if (control.value.match(/^1\d{10}$/)) {
             return null;

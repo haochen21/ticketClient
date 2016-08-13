@@ -44,8 +44,8 @@ export class CustomerModifyComponent implements OnInit {
       (<FormControl>this.form.controls['phone']).updateValue(this.customer.phone);
       (<FormControl>this.form.controls['email']).updateValue(this.customer.mail);
     }).catch(error => {
-      console.log(error)
-    });;
+      console.log(error);
+    });
   }
 
   onSubmit() {
@@ -64,7 +64,7 @@ export class CustomerModifyComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(user));      
       this.router.navigate(['/customer']);
     }).catch(error => {
-      console.log(error)
+      console.log(error);
     });
   }
 }

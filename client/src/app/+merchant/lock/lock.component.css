@@ -1,0 +1,35 @@
+.modify-phone-container {
+    padding-top: 10px;    
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.modifyphone-card {
+   padding: 0;
+}
+md-toolbar.md-primary {
+    background:#3090e6;
+    color: white;
+}
+md-card-content.content {
+    padding: 40px 10px 10px 10px;
+}
+.btn-submit {
+    width:100%;
+    background: #3090e6;
+    color: #fff;
+    font-size: 16px;
+}
+.input-text-box {
+	position: relative
+}
+.input-text-box i {
+	position: absolute;
+	left: 10px;
+	top: 14px;
+	color: #ccc
+}
+.login-errorMsg {
+    color: #d9534f;
+	margin-top: 15px;
+}

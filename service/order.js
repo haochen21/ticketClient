@@ -62,9 +62,7 @@ exports.statCartByProduct = function (req, res) {
 }
 
 exports.statCartNumberByStatus = function (req, res) {
-    let filter = req.body.filter;
-    var user = req.session.user;
-    filter.merchantId = user.id;
+    let filter = req.body.filter;    
     request({
         url: config.remoteServer + '/order/cart/stat/number',
         method: 'POST',
@@ -80,8 +78,7 @@ exports.statCartNumberByStatus = function (req, res) {
 
 exports.statCartEarningByStatus = function (req, res) {
     let filter = req.body.filter;
-    var user = req.session.user;
-    filter.merchantId = user.id;
+    
     request({
         url: config.remoteServer + '/order/cart/stat/earning',
         method: 'POST',

@@ -27,7 +27,7 @@ var payment = new Payment(initConfig);
  **/
 router.get('/jsconfig', function (req, res) {
     var param = {
-        debug: false,
+        debug: true,
         jsApiList: ['chooseWXPay'],
         url: config.url
     };

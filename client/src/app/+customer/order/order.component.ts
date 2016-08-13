@@ -51,7 +51,7 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
     
     tabs = [
         { label: '待付款' },
-        { label: '待收货' },
+        { label: '待提货' },
         { label: '已完成' }
     ];
 
@@ -188,8 +188,9 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
 
     paying(cart: Cart) {
         let _thisObj = this;
-        this.slimLoader.start();
+        //this.slimLoader.start();
         this.weixinService.getInfo(cart).then(payargs => {
+            //this.slimLoader.complete();
             wx.chooseWXPay({
                 appId: payargs.appId,
                 timestamp: payargs.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -199,22 +200,19 @@ export class CustomerOrderComponent implements OnInit, OnDestroy {
                 paySign: payargs.paySign, // 支付签名
                 success: function (res) {
                     if (res.errMsg == "chooseWXPay:ok") {
-                        //支付成功
-                       _thisObj.slimLoader.complete();                        
+                        //支付成功                                         
                        _thisObj.selectedTab = 1;
                        _thisObj.refresh();
                     } else {
                         alert('支付失败');
-                        _thisObj.slimLoader.complete();
                     }                    
                 },
                 cancel: function (res) {
-                    _thisObj.slimLoader.complete();
                 }
             });
         }).catch(error => {
             console.log(error);
-            this.slimLoader.complete();
+            //this.slimLoader.complete();
         });
     }
 

@@ -12,6 +12,7 @@ export class CartFilter {
     takeBeginTime: Date;
     takeEndTime: Date;
     productId: number;
+    weixinPaid:boolean;
     page: number;
     size: number;
     

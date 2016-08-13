@@ -33,7 +33,7 @@ export class ModifyPasswordComponent {
         this.securityService.modifyPassword(this.form.value.password).then(result => {
             window.history.back();
         }).catch(error => {
-            console.log(error)
+            console.log(error);
         });
     }
 }

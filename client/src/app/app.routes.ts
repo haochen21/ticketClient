@@ -18,6 +18,7 @@ import { ProductListComponent } from './+merchant/product/product-list.component
 import { HisCartComponent } from './+merchant/hiscart/hiscart.component';
 import { MerchantCartComponent } from './+merchant/cart/cart.component';
 import { OrderComponent } from './+merchant/order/order.component';
+import { MerchantLockComponent } from './+merchant/lock/lock.component';
 
 import { CustomerComponent } from './+customer/customer.component';
 import { CustomerMyComponent } from './+customer/my/my.component';
@@ -29,7 +30,7 @@ import { CustomerCategoryComponent } from './+customer/category/category.compone
 import { CustomerMerchantComponent } from './+customer/merchant/merchant.component';
 import { CustomerOrderComponent } from './+customer/order/order.component';
 import { CustomerProductComponent } from './+customer/product/product.component';
-
+import { CustomerModifyPhoneComponent } from './+customer/modifyPhone/modifyPhone.component';
 
 import { DataResolver } from './app.resolver';
 
@@ -59,6 +60,7 @@ export const routes: RouterConfig = [
       { path: '', component: OrderComponent },
       { path: 'my', component: MerchantMyComponent },
       { path: 'modifyuser', component: MerchantModifyComponent },
+      { path: 'lock', component: MerchantLockComponent },
       { path: 'openRange', component: OpenTimeComponent },
       { path: 'account', component: AccountComponent },
       { path: 'cart', component: MerchantCartComponent },
@@ -85,7 +87,8 @@ export const routes: RouterConfig = [
     children: [
       { path: '', component: CustomerPortalComponent },
       { path: 'my', component: CustomerMyComponent },
-      { path: 'modifyuser', component: CustomerModifyComponent },            
+      { path: 'modifyuser', component: CustomerModifyComponent },     
+      { path: 'modifyphone', component: CustomerModifyPhoneComponent },         
       { path: 'portal', component: CustomerPortalComponent },
       { path: 'cart',  component: CustomerCartComponent },
       { path: 'cartbill/:merchantId', component: CustomerCartBillComponent },
