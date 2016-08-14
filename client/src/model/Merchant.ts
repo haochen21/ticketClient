@@ -8,6 +8,8 @@ export class Merchant extends User {
     address: string;
     description: string;
     open: boolean;
+    takeByPhone: boolean;
+    takeByPhoneSuffix: boolean;
     openRanges: Array<OpenRange>;
     
     concern:boolean;

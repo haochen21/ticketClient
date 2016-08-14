@@ -33,7 +33,9 @@ export class MerchantModifyComponent implements OnInit {
       'email': ['', [Validators.required, ValidationService.emailValidator]],
       'shortName': ['', ,],
       'address': ['', ,],
-      'description': ['',[Validators.minLength(4), Validators.maxLength(255)] ,]
+      'description': ['',[Validators.minLength(4), Validators.maxLength(255)] ,],
+      'takeByPhone': ['', ,],
+      'takeByPhoneSuffix': ['', ,]
     });
   }
 
@@ -48,6 +50,8 @@ export class MerchantModifyComponent implements OnInit {
       (<FormControl>this.form.controls['shortName']).updateValue(this.merchant.shortName);
       (<FormControl>this.form.controls['email']).updateValue(this.merchant.mail);
       (<FormControl>this.form.controls['address']).updateValue(this.merchant.address);
+      (<FormControl>this.form.controls['takeByPhone']).updateValue(this.merchant.takeByPhone);
+      (<FormControl>this.form.controls['takeByPhoneSuffix']).updateValue(this.merchant.takeByPhoneSuffix);
       (<FormControl>this.form.controls['description']).updateValue(this.merchant.description);
     }).catch(error => {
       console.log(error)
@@ -67,6 +71,8 @@ export class MerchantModifyComponent implements OnInit {
     merchant.deviceNo = this.form.value.deviceNo;
     merchant.shortName = this.form.value.shortName;
     merchant.address = this.form.value.address;
+    merchant.takeByPhone = this.form.value.takeByPhone;
+    merchant.takeByPhoneSuffix = this.form.value.takeByPhoneSuffix;
     merchant.description = this.form.value.description;
 
     this.securityService.modifyMerchant(merchant).then(user => {

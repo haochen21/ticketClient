@@ -8,6 +8,7 @@ import { MdButton } from '@angular2-material/button/button';
 
 import { StoreService } from '../../../service/store.service';
 import { SecurityService } from '../../../service/security.service';
+import { CartService } from '../../../service/cart.service';
 
 import { Customer } from '../../../model/Customer';
 import { Merchant } from '../../../model/Merchant';
@@ -42,6 +43,7 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
     constructor(
         private storeService: StoreService,
         private securityService: SecurityService,
+        private cartService: CartService,
         private route: ActivatedRoute,
         private router: Router,
         private slimLoader: SlimLoadingBarService) {
@@ -144,6 +146,7 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
         }
         console.log(carts);
         localStorage.setItem('carts', JSON.stringify(carts));
+        this.cartService.changeCarts(carts);
         window.history.back();
     }
 

@@ -1,9 +1,5 @@
-.header {
-    background: #3090e6;
-    color: #fff;
-    height: 40px;
-    line-height: 40px;
-    padding-top: 4px;
+.merchant-register-container {
+    margin-bottom:50px;
 }
 .merchant-register-form {
     padding: 16px 15px;
@@ -49,4 +45,7 @@ p.prompt {
   height: 27px;
   font-size: 12px;
   padding-top: 10px;
+}
+.p-l-20 {
+    padding-left:20px;
 }

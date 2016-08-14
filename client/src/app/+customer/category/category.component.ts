@@ -8,6 +8,7 @@ import { SlimLoadingBarService, SlimLoadingBar } from 'ng2-slim-loading-bar/ng2-
 
 import { StoreService } from '../../../service/store.service';
 import { SecurityService } from '../../../service/security.service';
+import { CartService } from '../../../service/cart.service';
 
 import { Customer } from '../../../model/Customer';
 import { Merchant } from '../../../model/Merchant';
@@ -43,6 +44,7 @@ export class CustomerCategoryComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private storeService: StoreService,
         private securityService: SecurityService,
+        private cartService: CartService,
         private toastyService: ToastyService,
         private slimLoader: SlimLoadingBarService
     ) {
@@ -140,6 +142,7 @@ export class CustomerCategoryComponent implements OnInit, OnDestroy {
         this.addToast("操作成功", product.name + " 加入购物车");
         console.log(carts);
         localStorage.setItem('carts', JSON.stringify(carts));
+        this.cartService.changeCarts(carts);
     }
 
     detail(product: Product) {

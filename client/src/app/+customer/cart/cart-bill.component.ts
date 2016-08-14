@@ -13,6 +13,7 @@ import { NumberFormatPipe } from '../../../pipe/NumberFormat.pipe';
 import { SecurityService } from '../../../service/security.service';
 import { StoreService } from '../../../service/store.service';
 import { OrderService } from '../../../service/order.service';
+import { CartService } from '../../../service/cart.service';
 
 import { ControlMessages } from '../../component/control-messages.component';
 
@@ -60,6 +61,7 @@ export class CustomerCartBillComponent implements OnInit, OnDestroy {
         private storeService: StoreService,
         private securityService: SecurityService,
         private orderService: OrderService,
+        private cartService: CartService,
         private toastyService: ToastyService,
         private slimLoader: SlimLoadingBarService) {
     }
@@ -201,6 +203,7 @@ export class CustomerCartBillComponent implements OnInit, OnDestroy {
             if (this.orderResult.result) {
                 this.carts = this.carts.filter(c => c.merchant.id !== this.cart.merchant.id);
                 localStorage.setItem('carts', JSON.stringify(this.carts));
+                this.cartService.changeCarts(this.carts);
                 let needPay = this.orderResult.cart.needPay ? 1 : 0;
                 this.router.navigate(['/customer/order', needPay]);
             }

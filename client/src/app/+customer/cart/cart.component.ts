@@ -8,6 +8,7 @@ import { NumberFormatPipe } from '../../../pipe/NumberFormat.pipe';
 
 import { SecurityService } from '../../../service/security.service';
 import { StoreService } from '../../../service/store.service';
+import { CartService } from '../../../service/cart.service';
 
 import { Customer } from '../../../model/Customer';
 import { Merchant } from '../../../model/Merchant';
@@ -34,6 +35,7 @@ export class CustomerCartComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private storeService: StoreService,
+        private cartService: CartService,
         private securityService: SecurityService) {
     }
 
@@ -103,6 +105,7 @@ export class CustomerCartComponent implements OnInit, OnDestroy {
 
     saveCarts() {
         localStorage.setItem('carts', JSON.stringify(this.carts));
+        this.cartService.changeCarts(this.carts);
     }
 }
 

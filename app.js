@@ -22,7 +22,7 @@ ticketSocket.initialize(io);
 
 stompMessage.initialize(io);
 
-//app.use(compression());  
+app.use(compression());  
 
 app.use(express.static(__dirname + '/client/dist'));
 app.use(express.static(__dirname + '/customer/dist'));
