@@ -102,7 +102,7 @@ export class CustomerCategoryComponent implements OnInit, OnDestroy {
 
     }
 
-    addCart(product: Product) {
+    addCart(event,product: Product) {
         let carts: Array<Cart> = JSON.parse(localStorage.getItem('carts'));
         if (!carts) {
             carts = new Array<Cart>();
@@ -143,6 +143,9 @@ export class CustomerCategoryComponent implements OnInit, OnDestroy {
         console.log(carts);
         localStorage.setItem('carts', JSON.stringify(carts));
         this.cartService.changeCarts(carts);
+
+        event.stopPropagation();
+        event.preventDefault();
     }
 
     detail(product: Product) {

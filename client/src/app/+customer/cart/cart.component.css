@@ -13,6 +13,9 @@
     margin-bottom: 30px;
     background-color: #fff;
 }
+.cart-card::last-child {
+    margin-bottom: 50px;
+}
 .merchant-info {
     line-height: 35px;
     border-bottom: 1px solid #ddd;

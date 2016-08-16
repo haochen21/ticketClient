@@ -25,7 +25,6 @@ stompMessage.initialize(io);
 app.use(compression());  
 
 app.use(express.static(__dirname + '/client/dist'));
-app.use(express.static(__dirname + '/customer/dist'));
 
 app.use(expressSession({
     store: new RedisStore({

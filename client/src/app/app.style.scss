@@ -270,7 +270,7 @@ a {
 
 .varieties-shop .nav-tabs {
     background: #f2f2f2;
-    width: 110px;
+    width: 100px;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -288,10 +288,10 @@ a {
     margin-right: 0px;
     color: #555;
     border-radius: 0px;
-    word-wrap: break-word;
+	white-space:nowrap;
 }
 .varieties-shop .tab-content {    
-    margin-left: 110px;
+    margin-left: 95px;
 	overflow-y: auto;
     height: 100%;
 	padding-bottom: 90px;

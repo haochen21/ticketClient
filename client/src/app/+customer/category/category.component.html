@@ -1,7 +1,7 @@
 <div class="list-container row">
     <tabset class="varieties-shop">
         <tab *ngFor="let c of categorys;let i = index" [heading]="c.name" [active]="i === 0">
-            <div *ngFor="let p of c.products">
+            <div *ngFor="let p of c.products"  (click)="detail(p)">
                 <div class="product-edit-panel">
                     <div class="clearfix">
                         <div class="product-image-panel">
@@ -30,11 +30,10 @@
                         商品暂时下架
                     </div>
                     <div class="mt10 mb10 mf1 ml10 text-xs-center" *ngIf="p.status === 0">
-                        <button md-raised-button (click)="detail(p)">商品详情</button>
-                        <button md-raised-button color="warn"  [disabled]="!p.infinite && p.unitsInStock === 0" (click)="addCart(p)">加入购物车</button>
+                        <button md-raised-button color="warn" [disabled]="!p.infinite && p.unitsInStock === 0" (click)="addCart($event,p)">加入购物车</button>
                     </div>
                 </div>
-            </div>
+            </div>            
         </tab>
     </tabset>
     <ng2-toasty position="top-right"></ng2-toasty>

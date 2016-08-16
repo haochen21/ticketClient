@@ -32,6 +32,9 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
 
         this.securityService.findMechantsOfCustomer().then(result => {
             this.merchants = result;
+            for(var i:number=0;i<15;i++){
+                 this.merchants.push(result[0]);
+            }
         }).catch(error => {
             console.log(error)
         });
@@ -51,12 +54,14 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
         this.router.navigate(['/customer/category',merchant.id]);
     }
 
-    cancelConcern(merchant: Merchant) {
+    cancelConcern(event,merchant: Merchant) {
         let merchantIds: Array<number> = this.merchants.filter(m => m.id !== merchant.id).map(m => m.id);
         this.securityService.saveMerchantsOfCustomer(merchantIds).then(result => {
             this.merchants = result;
         }).catch(error => {
             console.log(error)
         });
+        event.stopPropagation();
+        event.preventDefault();
     }
 }

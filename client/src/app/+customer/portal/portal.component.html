@@ -1,26 +1,11 @@
 <div class="portal-container">
-    <div class="table-btns">
-        <button md-mini-fab color="myprimary" (click)="addMerchant($event)">
-                 <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon>
-              </button>
-    </div>   
-
-    <md-card *ngFor="let m of merchants">
-        <md-card-title>{{m.shortName}}</md-card-title>
-        <md-card-content>
-            <p>
-                <span class="demo-secondary-text">全称 -- </span>
-                <span>{{m.name}}</span>
-            </p>
-            <p>
-                <span class="demo-secondary-text">地址 -- </span>
-                <span>{{m.address}}</span>
-            </p>
-        </md-card-content>
-        <md-card-actions align="end">
-            <button md-raised-button color="primary" (click)="cancelConcern(m)">取消关注</button>
-            <button md-raised-button color="primary" (click)="goToMerchant(m)">详情</button>
-        </md-card-actions>
-    </md-card>
-
+    <md-nav-list>
+      <h3 md-subheader>关注商户</h3>
+      <a md-list-item *ngFor="let m of merchants" (click)="goToMerchant(m)">
+        <md-icon fontSet="fa" fontIcon="fa-trash-o" md-list-icon (click)="cancelConcern($event,m)"></md-icon>
+        <span md-line>{{ m.shortName }}</span>
+        <span md-line class="secondary-text">全称 -- {{m.name}} </span>
+        <span md-line class="secondary-text">地址 -- {{m.address}} </span>
+      </a>   
+    </md-nav-list>
 </div>

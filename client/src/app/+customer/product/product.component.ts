@@ -36,6 +36,8 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
 
     cartTakeTime: Array<any> = new Array();
 
+    nextDay: boolean = false;
+
     imagePreUrl: string = this.storeService.imagePreUrl;
 
     private sub: any;
@@ -65,8 +67,12 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
                         console.log(this.product);
                         this.securityService.findOpenRangesByMerchantId(this.merchant.id).then(value => {
                             this.covertTimeToDate(value.openRanges);
+                            if (this.cartTakeTime.length === 0) {
+                                this.nextDay = true;
+                                this.covertNextTimeToDate(value.openRanges);
+                            }
                         }).catch(error => {
-                            console.log(error);                            
+                            console.log(error);
                             this.slimLoader.complete();
                         });
                     }).catch(error => {
@@ -83,7 +89,7 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
         }).catch(error => {
             console.log(error);
             this.slimLoader.complete();
-        });        
+        });
     }
 
     ngOnDestroy() {
@@ -105,6 +111,34 @@ export class CustomerProductComponent implements OnInit, OnDestroy {
             }
         }
         return stockDescription;
+    }
+
+    covertNextTimeToDate(openRanges: Array<OpenRange>) {
+        for (let openRange of openRanges) {
+            let beginDateTime: moment.Moment = moment(new Date()).add(1, 'd');
+            let beginTimes: any = openRange.beginTime.toString().split(':');
+            beginDateTime = beginDateTime.hours(beginTimes[0]).minutes(beginTimes[1]).seconds(beginTimes[2]).milliseconds(0);
+
+            let endDateTime: moment.Moment = moment(new Date()).add(1, 'd');
+            let endTimes: any = openRange.endTime.toString().split(':');
+            endDateTime = endDateTime.hours(endTimes[0]).minutes(endTimes[1]).seconds(endTimes[2]).milliseconds(0);
+
+            this.cartTakeTime.push({
+                takeBeginTime: beginDateTime.toDate(),
+                takeEndTime: endDateTime.toDate(),
+                desc: beginTimes[0] + ':' + beginTimes[1] + ' - ' + endTimes[0] + ':' + endTimes[1]
+            });
+        }
+        this.cartTakeTime.sort(function (a, b) {
+            if (a.takeBeginTime > b.takeBeginTime) {
+                return 1;
+            }
+            if (a.takeBeginTime < b.takeBeginTime) {
+                return -1;
+            }
+            return 0;
+        });
+        console.log(this.cartTakeTime);
     }
 
     addCart(product: Product) {
