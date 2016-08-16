@@ -140,3 +140,7 @@ ul {
 .padding-50, .padding-60 {
     overflow: hidden;
 }
+.my-container .row {
+    margin-left: 0;
+    margin-right : 0;
+}

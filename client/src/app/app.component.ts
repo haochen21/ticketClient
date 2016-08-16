@@ -11,13 +11,12 @@ require("font-awesome-webpack");
  * Top Level Component
  */
 @Component({
-  selector: 'body',
+  selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styles: [require('!raw!sass!./app.style.scss')],
   template: ` 
-     <div class="km-container container">
-        <router-outlet></router-outlet>
-     </div>   
+     <div class="km-container container"></div>   
+     <router-outlet></router-outlet>
    `
 })
 export class App {

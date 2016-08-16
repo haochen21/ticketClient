@@ -2,7 +2,13 @@
     font: 12px/1.5 "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB",\5FAE\8F6F\96C5\9ED1,tahoma,simsun,sans-serif;
     color: #333;
     outline: 0;
-    margin-bottom: 50px;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    margin-left: 0;
+    margin-right: 0;    
+    position: absolute;
+    overflow: auto;
 }
 .card-container {
    padding-top: 15px;    

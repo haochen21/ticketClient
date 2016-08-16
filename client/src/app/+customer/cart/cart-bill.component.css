@@ -2,9 +2,14 @@
     font: 12px/1.5 "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB",\5FAE\8F6F\96C5\9ED1,tahoma,simsun,sans-serif;
     color: #333;
     outline: 0;
-    margin-bottom: 220px;
-    margin-right: -0.9375rem;
-    margin-left: -0.9375rem;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 55px;
+    margin-left: 0;
+    margin-right: 0;    
+    position: absolute;
+    overflow: auto;
 }
 .header {
     position: relative;
@@ -158,9 +163,7 @@
 }
 .good-ack {
     margin-top: 10px;
-    margin-bottom: 50px;
     background-color: #fff;
-    height: 250px;
 }
 .good-ack-form button {
     float: right;
@@ -169,4 +172,13 @@
 .order-error {
     color: #f44336;
     font-size: 14px;
+}
+.good-ack md-radio-button {
+    display: block;
+}
+.good-ack {   
+    font-size: 14px;
+}
+md-radio-button {
+    padding: 0px 5px 10px 5px;
 }

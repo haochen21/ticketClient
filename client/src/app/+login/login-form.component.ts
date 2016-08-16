@@ -28,7 +28,7 @@ export class LoginFormComponent implements OnInit {
 
     model = {
         loginName: '',
-        password: '1234qwer'
+        password: '123456'
     };
 
     onSubmit() {

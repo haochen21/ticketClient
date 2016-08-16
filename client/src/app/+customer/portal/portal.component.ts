@@ -13,11 +13,11 @@ import { Merchant } from '../../../model/Merchant';
 
 @Component({
     selector: 'customer-portal',
-    directives: [MD_CARD_DIRECTIVES, MdButton,SlimLoadingBar],
+    directives: [MD_CARD_DIRECTIVES, MdButton, SlimLoadingBar],
     templateUrl: './portal.component.html',
     styleUrls: ['./portal.component.css']
 })
-export class CustomerPortalComponent implements OnInit, OnDestroy {   
+export class CustomerPortalComponent implements OnInit, OnDestroy {
 
     merchants: Array<Merchant> = new Array<Merchant>();
 
@@ -28,13 +28,10 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
 
     }
 
-    ngOnInit() {       
+    ngOnInit() {
 
         this.securityService.findMechantsOfCustomer().then(result => {
-            this.merchants = result;
-            for(var i:number=0;i<15;i++){
-                 this.merchants.push(result[0]);
-            }
+            this.merchants = result;            
         }).catch(error => {
             console.log(error)
         });
@@ -50,11 +47,11 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
         this.router.navigate(['/customer/merchant']);
     }
 
-    goToMerchant(merchant: Merchant) {        
-        this.router.navigate(['/customer/category',merchant.id]);
+    goToMerchant(merchant: Merchant) {
+        this.router.navigate(['/customer/category', merchant.id]);
     }
 
-    cancelConcern(event,merchant: Merchant) {
+    cancelConcern(event, merchant: Merchant) {
         let merchantIds: Array<number> = this.merchants.filter(m => m.id !== merchant.id).map(m => m.id);
         this.securityService.saveMerchantsOfCustomer(merchantIds).then(result => {
             this.merchants = result;
