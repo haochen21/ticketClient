@@ -12,3 +12,6 @@
 .query-panel {
   padding: 15px 0 25px 0;
 }
+md-list-item::last-child {
+  margin-bottom: 50px;
+}
