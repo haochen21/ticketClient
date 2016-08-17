@@ -69,3 +69,7 @@ img {
 .form-control-label.order-error {
     padding: 0;
 }
+.offline {
+    color:#c7254e;
+    padding-left: 10px;
+}

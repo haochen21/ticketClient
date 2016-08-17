@@ -1,11 +1,16 @@
 <div class="portal-container">
-    <md-nav-list>
-      <h3 md-subheader>关注商户</h3>
-      <a md-list-item *ngFor="let m of merchants" (click)="goToMerchant(m)">
-        <md-icon fontSet="fa" fontIcon="fa-trash-o" md-list-icon (click)="cancelConcern($event,m)"></md-icon>
-        <span md-line>{{ m.shortName }}</span>
-        <span md-line class="secondary-text">全称 -- {{m.name}} </span>
-        <span md-line class="secondary-text">地址 -- {{m.address}} </span>
-      </a>   
-    </md-nav-list>
+  <div class="table-btns">
+    <button md-mini-fab color="myprimary" (click)="addMerchant($event)">
+                 <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon>
+              </button>
+  </div>
+  <md-nav-list>
+    <h3 md-subheader>关注商户</h3>
+    <a md-list-item *ngFor="let m of merchants" (click)="goToMerchant(m)">
+      <md-icon fontSet="fa" fontIcon="fa-trash-o" md-list-icon (click)="cancelConcern($event,m)"></md-icon>
+      <span md-line>{{ m.shortName }}</span>
+      <span md-line class="secondary-text">全称 -- {{m.name}} </span>
+      <span md-line class="secondary-text">地址 -- {{m.address}} </span>
+    </a>
+  </md-nav-list>
 </div>

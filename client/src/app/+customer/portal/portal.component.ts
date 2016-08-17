@@ -31,7 +31,7 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.securityService.findMechantsOfCustomer().then(result => {
-            this.merchants = result;            
+            this.merchants = result;
         }).catch(error => {
             console.log(error)
         });

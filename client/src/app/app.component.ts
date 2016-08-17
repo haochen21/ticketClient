@@ -1,8 +1,8 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
-
+import { Component, ApplicationRef, ViewEncapsulation } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { AppState } from './app.service';
 
 require("font-awesome-webpack");
@@ -22,13 +22,27 @@ require("font-awesome-webpack");
 export class App {
 
   constructor(
-    public appState: AppState) {
-
+    _router: Router,
+    _applicationRef: ApplicationRef,
+    public appState: AppState
+  ) {
+    if (this.isMac()) {
+      _router.events.subscribe((value) => {
+        _applicationRef.zone.run(() => _applicationRef.tick());
+      });
+    }
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);    
-  }  
+    console.log('Initial App State', this.appState.state);
+  }
+
+  isMac() {
+    if (navigator.userAgent.indexOf('Mac') > -1) {
+      return true
+    }
+    return false
+  }
 }
 
 /*
