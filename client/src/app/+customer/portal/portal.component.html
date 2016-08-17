@@ -1,16 +1,29 @@
 <div class="portal-container">
   <div class="table-btns">
     <button md-mini-fab color="myprimary" (click)="addMerchant($event)">
-                 <md-icon fontSet="fa" fontIcon="fa-plus"></md-icon>
+                 <md-icon fontSet="fa" fontIcon="fa-search"></md-icon>
               </button>
   </div>
-  <md-nav-list>
-    <h3 md-subheader>关注商户</h3>
-    <a md-list-item *ngFor="let m of merchants" (click)="goToMerchant(m)">
-      <md-icon fontSet="fa" fontIcon="fa-trash-o" md-list-icon (click)="cancelConcern($event,m)"></md-icon>
-      <span md-line>{{ m.shortName }}</span>
-      <span md-line class="secondary-text">全称 -- {{m.name}} </span>
-      <span md-line class="secondary-text">地址 -- {{m.address}} </span>
+  <div *ngFor="let m of merchants" class="list-group">
+    <a class="list-group-item" (click)="goToMerchant(m)">
+      <div class="media-box">
+        <div class="pull-left img-container">
+          <img *ngIf="m.imageSource" [src]="imagePreUrl+m.imageSource+'-sm'" style="width:60px; height:60px;">
+          <img *ngIf="!m.imageSource" src="assets/img/merchant-sm.png" style="width:60px; height:60px;">
+        </div>        
+        <div class="media-box-body clearfix">
+          <div class="body-container">
+            <p class="m0">{{m.shortName}}</p>
+            <p class="m0 text-muted">
+              <small>全称 -- {{m.name}}</small>
+            </p>
+            <p class="m0 text-muted">
+              <small>地址 -- {{m.address}}</small>
+            </p>
+            <button type="button" class="btn btn-warning btn-sm" (click)="cancelConcern($event,m)">取消关注</button>
+          </div>
+        </div>
+      </div>
     </a>
-  </md-nav-list>
+  </div>
 </div>

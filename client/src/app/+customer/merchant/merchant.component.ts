@@ -32,7 +32,7 @@ export class CustomerMerchantComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
        this.form = this.formBuilder.group({
-            'name': ['西安章', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
+            'name': ['味千拉面', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
         });
         this.securityService.findMechantsOfCustomer().then(result => {
             this.choosedMerchants = result;

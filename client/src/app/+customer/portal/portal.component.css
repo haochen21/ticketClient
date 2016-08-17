@@ -10,21 +10,45 @@
 }
 .table-btns{
     position: relative;
-    height: 50px;
+    height: 70px;
 }
 .table-btns button{
     position: absolute;
-    right: 10px;  
+    right: 15px;  
     top:10px;
 }
-.portal-container md-nav-list a[md-list-item] [md-list-icon] {
-    width: 38px;
-    height: 38px;
-    font-size: 1.5em;
+a.list-group-item, button.list-group-item {
+    color: #555;
 }
-.secondary-text {
-  color: rgba(0, 0, 0, 0.54);
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    background-color: #fff;
 }
-.cart-card:last-child {
-    margin-bottom: 50px;
+a {
+    outline: none!important;
+}
+.media-box:first-child {
+    margin-top: 0;
+}
+.media-box, .media-box-body {
+    overflow: hidden;
+    zoom: 1;
+}
+.media-box-body .body-container{
+    padding-left: 5px;
+}
+.add-cart-btn {
+    background-color: #00BCD4!important;
+}
+.img-container {
+    padding-top: 5px;
+}
+.trash-btn {
+    padding-top: 10px;
 }

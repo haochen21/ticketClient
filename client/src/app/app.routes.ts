@@ -19,6 +19,7 @@ import { HisCartComponent } from './+merchant/hiscart/hiscart.component';
 import { MerchantCartComponent } from './+merchant/cart/cart.component';
 import { OrderComponent } from './+merchant/order/order.component';
 import { MerchantLockComponent } from './+merchant/lock/lock.component';
+import { MerchantModifyImageComponent } from './+merchant/modifyimage/modify-image.component';
 
 import { CustomerComponent } from './+customer/customer.component';
 import { CustomerMyComponent } from './+customer/my/my.component';
@@ -60,6 +61,7 @@ export const routes: RouterConfig = [
       { path: '', component: OrderComponent },
       { path: 'my', component: MerchantMyComponent },
       { path: 'modifyuser', component: MerchantModifyComponent },
+      { path: 'modifyimage', component: MerchantModifyImageComponent },
       { path: 'lock', component: MerchantLockComponent },
       { path: 'openRange', component: OpenTimeComponent },
       { path: 'account', component: AccountComponent },

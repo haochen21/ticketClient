@@ -11,6 +11,8 @@ import { SecurityService } from '../../../service/security.service';
 import { Customer } from '../../../model/Customer';
 import { Merchant } from '../../../model/Merchant';
 
+const URL = 'http://120.25.90.244:8080/ticketServer/security/merchant/image/';
+
 @Component({
     selector: 'customer-portal',
     directives: [MD_CARD_DIRECTIVES, MdButton, SlimLoadingBar],
@@ -20,6 +22,8 @@ import { Merchant } from '../../../model/Merchant';
 export class CustomerPortalComponent implements OnInit, OnDestroy {
 
     merchants: Array<Merchant> = new Array<Merchant>();
+    
+    imagePreUrl: string = URL;
 
     constructor(
         private router: Router,
@@ -31,7 +35,7 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.securityService.findMechantsOfCustomer().then(result => {
-            this.merchants = result;
+            this.merchants = result;           
         }).catch(error => {
             console.log(error)
         });

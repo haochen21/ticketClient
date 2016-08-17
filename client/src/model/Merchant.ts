@@ -10,6 +10,7 @@ export class Merchant extends User {
     open: boolean;
     takeByPhone: boolean;
     takeByPhoneSuffix: boolean;
+    imageSource: string;
     openRanges: Array<OpenRange>;
     
     concern:boolean;

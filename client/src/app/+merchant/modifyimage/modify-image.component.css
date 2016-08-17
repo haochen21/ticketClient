@@ -1,0 +1,14 @@
+.modifyimage-container {
+    outline: 0;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 55px;
+    margin-left: 0;
+    margin-right: 0;    
+    position: absolute;
+    overflow: auto;
+}
+img {
+    width: 100%;
+}

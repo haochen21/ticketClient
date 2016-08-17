@@ -28,7 +28,7 @@ export class MerchantModifyComponent implements OnInit {
     this.form = formBuilder.group({
       'loginName': ['', ,],      
       'name': ['', Validators.required],
-      'deviceNo': ['', [Validators.required], ValidationService.deviceExists],
+      'deviceNo': ['', [], ValidationService.deviceExists],
       'phone': ['', [Validators.required, ValidationService.phoneValidator]],
       'email': ['', [Validators.required, ValidationService.emailValidator]],
       'shortName': ['', ,],
