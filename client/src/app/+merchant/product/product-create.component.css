@@ -2,7 +2,6 @@
     top: 0;
     left: 0px;
     right: 0px;
-    bottom: 50px;
     position: absolute;
     overflow: auto;
 }
@@ -31,4 +30,7 @@
 }
 img {
     width: 100%;
+}
+.preview .card {
+    margin-bottom: 45px;
 }
