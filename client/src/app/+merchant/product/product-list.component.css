@@ -1,6 +1,17 @@
-.row {
-    display: block;
+.product-container {
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    position: absolute;
+    overflow: auto;
 }
-.inline.row{
-    display: flex;
+.info-head {
+    margin: 0;
+}
+.product-price {
+    padding-top: 10px;
+}
+.product-image-panel {
+    padding: 10px 10px 0px 0px;
 }

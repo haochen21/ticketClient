@@ -1,20 +1,29 @@
-<div class="order-container">
-    <div class="table-btns">
-        <button md-mini-fab color="myprimary" (click)="refresh($event)">
-                 <md-icon fontSet="fa" fontIcon="fa-refresh"></md-icon>
-              </button>
-    </div>    
-    <div class="wrapper">
-        <tabset class="varieties-shop">
-            <tab *ngFor="let tabz of tabs" (select)="selectTab(tabz)">
-                <template tabHeading>
-                    <div>{{tabz.beginTime | dateFormatPipe:'HH:mm'}}</div>
-                    <div class="text-xs-center"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                    <div>{{tabz.endTime | dateFormatPipe:'HH:mm'}}</div>
-                </template>
-                <order-list [openRange]="tabz"></order-list>
-            </tab>
-        </tabset>
+<div class="order-container container">
+    <div class="table-btns-container row">
+        <div class="col-xs-7 time-range" *ngIf="tabs.length > 0">
+            时间: {{tabs[selectedIndex].beginTime | dateFormatPipe:'HH:mm'}} - {{tabs[selectedIndex].endTime | dateFormatPipe:'HH:mm'}}
+        </div>
+        <div class="table-btns col-xs-5">
+            <button type="button" class="btn btn-info btn-sm" (click)="refresh($event)"><i class="fa fa-refresh"></i></button>         
+            <button type="button" class="btn btn-warning btn-sm" (click)="openQuery($event)"><i class="fa fa-calendar"></i></button>
+        </div>
+    </div>
+    <div class="wrapper row">
+        <div class="col-xs-12">
+            <order-list [openRange]="tabs[selectedIndex]" *ngIf="tabs.length > 0"></order-list>
+        </div>
+    </div>
+    <div class="query-panel row" *ngIf="openQueryPanel">
+        <div class="form">
+            <label class="col-xs-2 form-control-label">统计时间</label>
+            <div class="col-xs-10">
+                <md-radio-group (change)="selectedOpenRange($event)" [value]="tabs[selectedIndex]">
+                    <md-radio-button *ngFor="let tab of tabs" [value]="tab">
+                        <div>{{tab.beginTime | dateFormatPipe:'HH:mm'}} - {{tab.endTime | dateFormatPipe:'HH:mm'}}</div>
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
     </div>
     <ng2-slim-loading-bar></ng2-slim-loading-bar>
 </div>

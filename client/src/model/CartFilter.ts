@@ -9,6 +9,8 @@ export class CartFilter {
     needPay: boolean;  
     createTimeBefore: Date; 
     createTimeAfter: Date;
+    takeBeginTimeBefore: Date; 
+    takeBeginTimeAfter: Date;
     takeBeginTime: Date;
     takeEndTime: Date;
     productId: number;

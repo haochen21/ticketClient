@@ -44,13 +44,15 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
       .then(user => {
         console.log(user);
         this.merchant = <Merchant>user;
+
+        this.statCartNumber();
+        this.statCartEarning();
       })
       .catch(error => {
         console.log(error)
       });
 
-    this.statCartNumber();
-    this.statCartEarning();
+
   }
 
   ngOnDestroy() {
@@ -61,16 +63,16 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
     let filter: CartFilter = new CartFilter();
 
     filter.merchantId = this.merchant.id;
-    
+
     let beginDate: moment.Moment = moment(new Date());
     beginDate.hours(0).minutes(0).seconds(0).milliseconds(0);
-    let createTimeAfter: Date = beginDate.toDate();
-    filter.createTimeAfter = createTimeAfter;
+    let takeBeginTimeAfter: Date = beginDate.toDate();
+    filter.takeBeginTimeAfter = takeBeginTimeAfter;
 
     let endDate: moment.Moment = moment(new Date());
     endDate.hours(23).minutes(59).seconds(59).milliseconds(999);
-    let createTimeBefore: Date = endDate.toDate();
-    filter.createTimeBefore = createTimeBefore;
+    let takeBeginTimeBefore: Date = endDate.toDate();
+    filter.takeBeginTimeBefore = takeBeginTimeBefore;
 
     let statuses: Array<CartStatus> = new Array<CartStatus>();
     statuses.push(CartStatus.CONFIRMED);
@@ -89,16 +91,16 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
     let filter: CartFilter = new CartFilter();
 
     filter.merchantId = this.merchant.id;
-    
-    let beginDate: moment.Moment = moment(new Date());
-    beginDate.hours(0).minutes(0).seconds(0).milliseconds(0);
-    let createTimeAfter: Date = beginDate.toDate();
-    filter.createTimeAfter = createTimeAfter;
 
-    let endDate: moment.Moment = moment(new Date());
+    let beginDate: moment.Moment = moment().startOf('month');
+    beginDate.hours(0).minutes(0).seconds(0).milliseconds(0);
+    let takeBeginTimeAfter: Date = beginDate.toDate();
+    filter.takeBeginTimeAfter = takeBeginTimeAfter;
+
+    let endDate: moment.Moment = moment().endOf('month');
     endDate.hours(23).minutes(59).seconds(59).milliseconds(999);
-    let createTimeBefore: Date = endDate.toDate();
-    filter.createTimeBefore = createTimeBefore;
+    let takeBeginTimeBefore: Date = endDate.toDate();
+    filter.takeBeginTimeBefore = takeBeginTimeBefore;
 
     let statuses: Array<CartStatus> = new Array<CartStatus>();
     statuses.push(CartStatus.CONFIRMED);
@@ -106,7 +108,7 @@ export class MerchantMyComponent implements OnInit, OnDestroy {
     filter.statuses = statuses;
 
     filter.weixinPaid = true;
-    
+
     filter.needPay = true;
 
     this.orderService.statCartEarningByStatus(filter).then(value => {

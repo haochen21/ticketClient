@@ -35,7 +35,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     tabs: Array<OpenRange> = [];
 
+    selectedIndex: number;
+
     connection: any;
+
+    openQueryPanel: boolean = false;
 
     constructor(
         private orderService: OrderService,
@@ -46,11 +50,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        document.body.style.backgroundColor = '#f2f0f0';
         this.refresh();
     }
 
     ngOnDestroy() {
         this.connection.unsubscribe();
+        document.body.style.backgroundColor = '';
     }
 
     selectTab(tabz: OpenRange) {
@@ -63,7 +69,10 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.securityService.findOpenRanges().then(value => {
             this.covertTimeToDate(value.openRanges);
             this.merchant = value;
+            let index = 0;
             for (let openRange of this.merchant.openRanges) {
+                openRange.index = index;
+                index++;
                 this.tabs.push(openRange);
             }
             // 24 hours
@@ -74,7 +83,11 @@ export class OrderComponent implements OnInit, OnDestroy {
             let range: OpenRange = new OpenRange();
             range.beginTime = beginTime.toDate();
             range.endTime = endTime.toDate();
-            this.tabs.unshift(range);            
+            range.index = index;
+            this.tabs.push(range);
+
+            this.selectedIndex = 0;
+
             return new Promise(resolve => {
                 resolve(this.tabs);
             });
@@ -82,13 +95,13 @@ export class OrderComponent implements OnInit, OnDestroy {
             let excueteArray: Array<any> = new Array();
             for (let openRange of this.tabs) {
                 excueteArray.push(this.statStatus(openRange));
-                excueteArray.push(this.statProduct(openRange));               
+                excueteArray.push(this.statProduct(openRange));
             }
             Promise.all(excueteArray).then((results: any[]) => {
                 this.connectWebSocket();
                 this.slimLoader.complete();
             });
-          
+
         }).catch(error => {
             console.log(error);
             this.slimLoader.complete();
@@ -154,7 +167,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
         return this.orderService.statCartByStatus(filter).then(value => {
             openRange.statusStat = value;
-            console.log(value);            
+            console.log(value);
             return new Promise(resolve => {
                 resolve(value);
             });
@@ -178,7 +191,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
         return this.orderService.statCartByProduct(filter).then(value => {
             openRange.products = value;
-            console.log(value);           
+            console.log(value);
             return new Promise(resolve => {
                 resolve(value);
             });
@@ -195,6 +208,17 @@ export class OrderComponent implements OnInit, OnDestroy {
             openRange.beginTime = beginDate.toDate();
             openRange.endTime = endDate.toDate();
         }
+    }
+
+    openQuery(event) {
+        this.openQueryPanel = !this.openQueryPanel;
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    selectedOpenRange(event) {
+        this.openQueryPanel = false;
+        this.selectedIndex = event.value.index;
     }
 
 }

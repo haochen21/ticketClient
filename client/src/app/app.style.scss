@@ -195,6 +195,9 @@ a {
 .pb10 {
 	padding-bottom: 10px;
 }
+.pt20 {
+	padding-top: 20px;
+}
 .pt10 {
 	padding-top: 10px;
 }
@@ -295,6 +298,7 @@ a {
 }
 .varieties-shop .tab-content {    
     margin-left: 95px;
+	border: none;
 }
 .category-container .varieties-shop .tab-content {    
     margin-left: 100px;
@@ -350,7 +354,7 @@ md-list[dense] .md-list-item .md-list-text p {
     padding:2px 0;
 }
 md-tab-group .md-tab-header .md-tab-label{
-    min-width: 120px;
+    min-width: 105px;
 }
 .inline md-slide-toggle {
     float: right;

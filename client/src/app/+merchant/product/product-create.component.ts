@@ -68,7 +68,7 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
             'description': ['', [Validators.minLength(4), Validators.maxLength(255)]],
             'unitsInStock': ['0', [Validators.required, ValidationService.numberValidator]],
             'payTimeLimit': ['10', [Validators.required, ValidationService.timeValidator]],
-            'takeTimeLimit': ['60', [Validators.required, ValidationService.timeValidator]],
+            'takeTimeLimit': ['0', [Validators.required, ValidationService.timeValidator]],
             'needPay': [this.product.needPay],
             'infinite': [this.product.infinite],
             'status': ['销售', [Validators.required]],

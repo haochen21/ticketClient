@@ -8,5 +8,7 @@ export class OpenRange {
     statusStat: Array<CartStatusStat>;
     products: Array<Product>;
     
+    index:number;
+    
     constructor() { }
 }

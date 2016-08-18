@@ -1,18 +1,41 @@
 .order-container {
-    margin-right: -0.9375rem;
-    margin-left: -0.9375rem;
-}
-.table-btns{
-    position: relative;
-    height: 50px;
-}
-.table-btns button{
+    outline: 0;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 45px;
+    margin-left: 0;
+    margin-right: 0;    
     position: absolute;
-    right: 10px;  
-    top:10px;
+    overflow: auto;
 }
-.wrapper {
-    margin-bottom: 45px;
-    margin-top: 5px;
-    position: relative;
+.table-btns-container {
+    padding-top: 10p;
+    padding-bottom: 10px;
+}
+.time-range {
+    padding-top: 10px;
+}
+.table-btns {
+    padding-top: 8px;
+}
+.query-panel {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 1000;
+}
+.query-panel .form {
+    padding: 20px 20px 5px 20px;
+}
+.btn-submit {
+    background: #4cc05f;
+    color: #fff;
+    font-size: 16px;
+}
+md-radio-button {
+    display: block;
+    padding: 0px 5px 10px 5px;
 }
