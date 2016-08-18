@@ -1,29 +1,33 @@
-<div class="list-container">
-    <div *ngIf="hasInit && categorys.length === 0" class="row create">
-        <md-card class="text-xs-center">
-            <md-card-subtitle>商品目录为空</md-card-subtitle>
-            <md-card-title>新建商品目录</md-card-title>
-            <md-card-content>
-                <p>您还没有商品目录信息，请先新建一个目录！</p>
-            </md-card-content>
-            <md-card-actions align="center">
-                <a [routerLink]="['/merchant/category/create']" class="card-link">新建目录</a>
-            </md-card-actions>
-        </md-card>
-    </div>
+<div class="list-container container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div *ngIf="hasInit && categorys.length === 0" class="create">
+                <md-card class="text-xs-center">
+                    <md-card-subtitle>商品目录为空</md-card-subtitle>
+                    <md-card-title>新建商品目录</md-card-title>
+                    <md-card-content>
+                        <p>您还没有商品目录信息，请先新建一个目录！</p>
+                    </md-card-content>
+                    <md-card-actions align="center">
+                        <a [routerLink]="['/merchant/category/create']" class="card-link">新建目录</a>
+                    </md-card-actions>
+                </md-card>
+            </div>
 
-    <div *ngIf="hasInit && categorys.length > 0" class="row">
-        <md-card *ngFor="let category of categorys" class="text-xs-center">
-            <a [routerLink]="['/merchant/category/create']" class="label label-success pull-right create-label">新&nbsp;&nbsp;建</a>
-            <md-card-title>{{category.name}}</md-card-title>
-            <md-card-content>
-                <p>{{category.description}}</p>
-            </md-card-content>
-            <md-card-actions align="center">
-                <button md-button (click)="modify(category.id)">编辑</button>
-                <button md-button (click)="delete(category.id)">删除</button>
-            </md-card-actions>
-        </md-card>
+            <div *ngIf="hasInit && categorys.length > 0">
+                <md-card *ngFor="let category of categorys" class="text-xs-center">
+                    <a [routerLink]="['/merchant/category/create']" class="label label-success pull-right create-label">新&nbsp;&nbsp;建</a>
+                    <md-card-title>{{category.name}}</md-card-title>
+                    <md-card-content>
+                        <p>{{category.description}}</p>
+                    </md-card-content>
+                    <md-card-actions align="center">
+                        <button md-button (click)="modify(category.id)">编辑</button>
+                        <button md-button (click)="delete(category.id)">删除</button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
     </div>
     <ng2-slim-loading-bar></ng2-slim-loading-bar>
 </div>

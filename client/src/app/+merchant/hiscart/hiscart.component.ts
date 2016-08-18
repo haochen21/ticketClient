@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 import * as moment from 'moment';
@@ -28,7 +28,7 @@ import { CartFilter } from '../../../model/CartFilter';
     templateUrl: './hiscart.component.html',
     styleUrls: ['./hiscart.component.css']
 })
-export class HisCartComponent implements OnInit {
+export class HisCartComponent implements OnInit, OnDestroy {
 
     merchant: Merchant;
 
@@ -40,7 +40,7 @@ export class HisCartComponent implements OnInit {
 
     filter: CartFilter;
 
-    size: number = 2;
+    size: number = 8;
 
     cartPage: CartPage = new CartPage();
 
@@ -52,6 +52,7 @@ export class HisCartComponent implements OnInit {
     }
 
     ngOnInit() {
+        document.body.style.backgroundColor = '#f2f0f0';
         this.securityService.findUser().then(user => {
             this.merchant = <Merchant>user;
             let queryDate: moment.Moment = moment(this.date);
@@ -73,6 +74,10 @@ export class HisCartComponent implements OnInit {
             console.log(error);
         });
 
+    }
+    
+    ngOnDestroy() {
+        document.body.style.backgroundColor = '';
     }
 
     openQuery() {

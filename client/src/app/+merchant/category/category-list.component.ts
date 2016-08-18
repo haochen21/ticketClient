@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
 
 import { SlimLoadingBarService, SlimLoadingBar } from 'ng2-slim-loading-bar/ng2-slim-loading-bar';
@@ -15,13 +15,13 @@ import { Merchant } from '../../../model/Merchant';
     templateUrl: './category-list.component.html',
     styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, OnDestroy {
 
     merchant: Merchant;
 
     categorys: Array<Category> = [];
 
-    hasInit:boolean = false;
+    hasInit: boolean = false;
 
     constructor(
         private storeService: StoreService,
@@ -33,9 +33,9 @@ export class CategoryListComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        document.body.style.backgroundColor = '#f2f0f0';
         this.slimLoader.start();
-        
+
         this.storeService.findCategoryByMerchant().then(value => {
             this.categorys = value;
             console.log(value);
@@ -45,6 +45,10 @@ export class CategoryListComponent implements OnInit {
             console.log(error);
             this.slimLoader.complete();
         });
+    }
+
+    ngOnDestroy() {
+        document.body.style.backgroundColor = '';
     }
 
     delete(id: number) {

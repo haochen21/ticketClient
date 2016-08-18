@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm }    from '@angular/forms';
 
 import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
@@ -28,7 +28,7 @@ import { CartFilter } from '../../../model/CartFilter';
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.css']
 })
-export class MerchantCartComponent implements OnInit {
+export class MerchantCartComponent implements OnInit, OnDestroy {
 
     merchant: Merchant;
 
@@ -55,6 +55,7 @@ export class MerchantCartComponent implements OnInit {
     }
 
     ngOnInit() {
+        document.body.style.backgroundColor = '#f2f0f0';
         this.securityService.findUser().then(user => {
             this.merchant = <Merchant>user;
             this.refresh();
@@ -73,6 +74,7 @@ export class MerchantCartComponent implements OnInit {
     }
 
     ngOnDestroy() {
+        document.body.style.backgroundColor = '';
         this.connection.unsubscribe();
     }
 

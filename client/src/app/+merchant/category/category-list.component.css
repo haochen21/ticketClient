@@ -1,12 +1,16 @@
-.row {
-    display: block;
+.list-container {
+    outline: 0;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    margin-left: 0;
+    margin-right: 0;    
+    position: absolute;
+    overflow: auto;
 }
 md-card {
-    margin-bottom: 0.75rem;
-}
-.list-container {
-    padding:10px 5px 0 10px;
-    margin-bottom: 65px;
+    margin-top: 0.75rem;
 }
 .create {
     margin-top: 45%;
