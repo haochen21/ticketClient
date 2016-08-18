@@ -9,6 +9,7 @@ import { OrderService } from '../../../service/order.service';
 import { SecurityService } from '../../../service/security.service';
 
 import { MapToIterable } from '../../../pipe/MapToIterable.pipe';
+import { NumberFormatPipe } from '../../../pipe/NumberFormat.pipe';
 
 import { Merchant } from '../../../model/Merchant';
 import { CartStatus } from '../../../model/CartStatus';
@@ -18,7 +19,7 @@ import { CartFilter } from '../../../model/CartFilter';
     selector: 'merchant-account',
     directives: [REACTIVE_FORM_DIRECTIVES, SlimLoadingBar],
     providers: [OrderService],
-    pipes: [MapToIterable],
+    pipes: [MapToIterable, NumberFormatPipe],
     templateUrl: './account.component.html',
     styleUrls: ['./account.component.css']
 })

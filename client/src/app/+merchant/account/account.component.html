@@ -14,11 +14,11 @@
                 <tbody>
                     <tr>
                         <td>总收入</td>
-                        <td><i class="fa fa-jpy padding-right-5"></i>{{getTotalPrice()}}</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{getTotalPrice()  | numberFormatPipe }}</td>
                     </tr>
                     <tr *ngFor="let earningMap of earnings | mapToIterable">
                         <td>{{earningMap.key}}</td>
-                        <td><i class="fa fa-jpy padding-right-5"></i>{{earningMap.val}}</td>
+                        <td><i class="fa fa-jpy padding-right-5"></i>{{earningMap.val | numberFormatPipe }}</td>
                     </tr>
                 </tbody>
             </table>
