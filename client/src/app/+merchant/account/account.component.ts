@@ -87,17 +87,20 @@ export class AccountComponent implements OnInit {
         this.openQueryPanel = false;
         let beginDate: moment.Moment = moment(this.beginDate);
         beginDate.hours(0).minutes(0).seconds(0).milliseconds(0);
-        let createTimeAfter: Date = beginDate.toDate();
-        this.filter.createTimeAfter = createTimeAfter;
+        let takeBeginTimeAfter: Date = beginDate.toDate();
+        this.filter.takeBeginTimeAfter = takeBeginTimeAfter;
 
         let endDate: moment.Moment = moment(this.endDate);
         endDate.hours(23).minutes(59).seconds(59).milliseconds(999);
-        let createTimeBefore: Date = endDate.toDate();
-        this.filter.createTimeBefore = createTimeBefore;
+        let takeBeginTimeBefore: Date = endDate.toDate();
+        this.filter.takeBeginTimeBefore = takeBeginTimeBefore;
 
         let statuses: Array<CartStatus> = new Array<CartStatus>();
         statuses.push(CartStatus.CONFIRMED);
         statuses.push(CartStatus.DELIVERED);
+        this.filter.statuses = statuses;
+
+        this.filter.weixinPaid = true;
 
         this.filter.needPay = true;
 
