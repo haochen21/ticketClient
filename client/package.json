@@ -107,6 +107,7 @@
     "ng2-toasty": "^1.7.3",
     "ng2-slim-loading-bar": "^1.2.3",
     "ng2-file-upload": "^1.0.3",  
+    "ng2-uploader": "^0.5.13",
     "socket.io-client": "^1.4.8",
     
     "ie-shim": "^0.1.0",

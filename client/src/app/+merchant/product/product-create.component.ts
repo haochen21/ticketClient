@@ -12,6 +12,8 @@ import { SlimLoadingBarService, SlimLoadingBar } from 'ng2-slim-loading-bar/ng2-
 import { ControlMessages } from '../../component/control-messages.component';
 import { ValidationService } from '../../../service/validation.service';
 
+import { NumberFormatPipe } from '../../../pipe/NumberFormat.pipe';
+
 import { StoreService } from '../../../service/store.service';
 import { SecurityService } from '../../../service/security.service';
 
@@ -25,6 +27,7 @@ const URL = 'http://120.25.90.244:8080/ticketServer/store/product/image';
 
 @Component({
     selector: 'product-create',
+    pipes: [NumberFormatPipe],
     directives: [PROGRESSBAR_DIRECTIVES, Toasty, SlimLoadingBar, REACTIVE_FORM_DIRECTIVES, ControlMessages, FILE_UPLOAD_DIRECTIVES],
     templateUrl: './product-create.component.html',
     styleUrls: ['./product-create.component.css']

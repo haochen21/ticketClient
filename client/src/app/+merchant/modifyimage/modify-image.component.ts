@@ -7,6 +7,8 @@ import { FileUploader, FILE_UPLOAD_DIRECTIVES }   from 'ng2-file-upload/ng2-file
 import { ControlMessages } from '../../component/control-messages.component';
 import { ValidationService } from '../../../service/validation.service';
 
+import { NumberFormatPipe } from '../../../pipe/NumberFormat.pipe';
+
 import { StoreService } from '../../../service/store.service';
 import { SecurityService } from '../../../service/security.service';
 
@@ -18,6 +20,7 @@ const URL = 'http://120.25.90.244:8080/ticketServer/security/merchant/image';
 @Component({
     selector: 'modify-image',
     directives: [PROGRESSBAR_DIRECTIVES, ControlMessages, FILE_UPLOAD_DIRECTIVES],
+    pipes: [NumberFormatPipe],
     templateUrl: './modify-image.component.html',
     styleUrls: ['./modify-image.component.css']
 })
