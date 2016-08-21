@@ -48,6 +48,8 @@ export class CustomerCartBillComponent implements OnInit, OnDestroy {
 
     nextDay: boolean = false;
 
+    selectNextDay: boolean = false;
+
     form: FormGroup;
 
     orderResult: OrderResult;

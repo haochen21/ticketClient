@@ -1,20 +1,22 @@
-<div class="modify-phone-container">
-    <md-card class="modifyphone-card">
-        <md-toolbar color="primary">商户验证</md-toolbar>
-        <md-card-content class="content">
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="password" class="col-md-3 p0">密码&nbsp;&nbsp;</label>
-                    <div class="col-md-9 p0 input-text-box">
-                        <input type="password" class="form-control" placeholder="密码" formControlName="password">
+<div class="modify-phone-container container">
+    <div class="row">
+        <md-card class="modifyphone-card">
+            <md-toolbar color="primary">商户验证</md-toolbar>
+            <md-card-content class="content">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 p0">密码&nbsp;&nbsp;</label>
+                        <div class="col-md-9 p0 input-text-box">
+                            <input type="password" class="form-control" placeholder="密码" formControlName="password">
+                        </div>
+                        <p class="login-errorMsg" *ngIf="!unLock">密码不正确</p>
                     </div>
-                    <p class="login-errorMsg" *ngIf="!unLock">密码不正确</p>
-                </div>                
 
-                <div class="form-group">
-                    <button md-raised-button class="btn-submit" [disabled]="!form.valid">完&nbsp;成</button>
-                </div>
-            </form>
-        </md-card-content>
-    </md-card>
+                    <div class="form-group">
+                        <button md-raised-button class="btn-submit" [disabled]="!form.valid">完&nbsp;成</button>
+                    </div>
+                </form>
+            </md-card-content>
+        </md-card>
+    </div>
 </div>

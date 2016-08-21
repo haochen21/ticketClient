@@ -52,3 +52,7 @@ a {
 .trash-btn {
     padding-top: 10px;
 }
+.cancel-care {
+    float: right;
+    margin-top: 10px;
+}

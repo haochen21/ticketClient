@@ -1,18 +1,12 @@
-.modify-phone-container {
-    padding-top: 10px;    
-    margin-left: -10px;
-    margin-right: -10px;
-}
-
-.modifyphone-card {
-   padding: 0;
-}
 md-toolbar.md-primary {
     background:#3090e6;
     color: white;
 }
 md-card-content.content {
     padding: 40px 10px 10px 10px;
+}
+.row{
+    display: block;
 }
 .btn-submit {
     width:100%;
