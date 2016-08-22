@@ -27,7 +27,7 @@ var payment = new Payment(initConfig);
  **/
 router.get('/jsconfig', function (req, res) {
     var param = {
-        debug: true,
+        debug: false,
         jsApiList: ['scanQRCode', 'chooseWXPay'],
         url: config.jsUrl
     };
