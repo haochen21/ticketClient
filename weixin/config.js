@@ -5,5 +5,6 @@ module.exports = {
     partnerKey:'1234qwer1234asdf1234zxcv1234qwer',
     payFile:'d://workspace//apiclient_cert.p12',
     notifyUrl:'http://shop.km086.com/weixin/pay/notify/',
-    url:"http://shop.km086.com/?"  
+    url:"http://shop.km086.com",
+    jsUrl:"http://shop.km086.com/?"
 }  

@@ -29,16 +29,12 @@ router.get('/jsconfig', function (req, res) {
     var param = {
         debug: true,
         jsApiList: ['scanQRCode', 'chooseWXPay'],
-        url: config.url
+        url: config.jsUrl
     };
-    wechatApi.getTicket(function (err, result) {
-        console.log('getTicket:' + JSON.stringify(result));
-        wechatApi.getJsConfig(param, function (err, result) {
-            console.log('jsconfig: ' + JSON.stringify(result));
-            res.json(result);
-        });
+    wechatApi.getJsConfig(param, function (err, result) {
+        console.log('jsconfig: ' + JSON.stringify(result));
+        res.json(result);
     });
-
 
 });
 

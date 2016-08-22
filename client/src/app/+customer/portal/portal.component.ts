@@ -43,9 +43,7 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
             this.merchants = result;
             this.weixinService.getJsConfig().then(data => {
                 alert(location.href.split('#')[0]);
-                alert(JSON.stringify(data));
                 wx.config(data);   
-                alert(JSON.stringify(data));
             }).catch(error => {
                 console.log(error);
                 this.slimLoader.complete();
