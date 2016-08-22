@@ -1,6 +1,8 @@
 var request = require("request");
 var config = require("../config");
 
+var wxTicket = require('../weixin/wx-ticket');
+
 exports.login = function (req, res) {
     let loginName = req.body.loginName;
     let password = req.body.password;
@@ -248,6 +250,36 @@ exports.modifyOpen = function (req, res) {
             res.status(200).end();
         }
     });
+}
+
+exports.updateMerchantWxTicket = function (req, res) {
+    let user = req.session.user;
+    let id = user.id;
+
+    wxTicket.createTicket(id, function (err, result) {
+        if (err) {
+            console.error("create ticket error:", err);
+            res.status(404).end();
+        } else {
+            console.log('create ticket,merchanId: ' + id + ', ticket is: ' + result.ticket);
+            request({
+                url: config.remoteServer + '/security/merchant/wxTicket',
+                method: 'POST',
+                form: {
+                    id: id,
+                    wxTicket: result.ticket
+                }
+            }, function (err, response, body) {
+                if (err) {
+                    console.error("modify open error:", err, " (status: " + err.status + ")");
+                    res.status(404).end();
+                } else {
+                    res.status(200).send({ ticket: result.ticket });
+                }
+            });
+        }
+    });
+
 }
 
 exports.findOpenRange = function (req, res) {

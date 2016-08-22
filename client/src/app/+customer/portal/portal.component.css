@@ -12,10 +12,10 @@
     position: relative;
     height: 70px;
 }
-.table-btns button{
-    position: absolute;
-    right: 15px;  
-    top:10px;
+.btn-group {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 a.list-group-item, button.list-group-item {
     color: #555;

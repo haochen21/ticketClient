@@ -27,14 +27,18 @@ var payment = new Payment(initConfig);
  **/
 router.get('/jsconfig', function (req, res) {
     var param = {
-        debug: false,
-        jsApiList: ['chooseWXPay'],
+        debug: true,
+        jsApiList: ['scanQRCode', 'chooseWXPay'],
         url: config.url
     };
-    wechatApi.getJsConfig(param, function (err, result) {
-        console.log('jsconfig: ' + JSON.stringify(result));
-        res.json(result);
+    wechatApi.getTicket(function (err, result) {
+        console.log('getTicket:' + JSON.stringify(result));
+        wechatApi.getJsConfig(param, function (err, result) {
+            console.log('jsconfig: ' + JSON.stringify(result));
+            res.json(result);
+        });
     });
+
 
 });
 

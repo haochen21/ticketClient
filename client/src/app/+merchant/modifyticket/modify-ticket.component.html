@@ -1,0 +1,12 @@
+<div class="modifyticket-container">
+    <div class="card text-xs-center">
+        <img *ngIf="merchant.wxTicket" class="card-img-top" [src]="ticketUrl">
+        <div class="card-block" *ngIf="merchant.wxTicket">
+            <h4 class="card-title">二维码地址</h4>
+            <p class="card-text ticket-url">{{ticketUrl}}</p>
+        </div>
+        <div class="card-block">
+            <button md-raised-button color="warn" (click)="createTicket($event)">生成商家二维码</button>
+        </div>
+    </div>
+</div>

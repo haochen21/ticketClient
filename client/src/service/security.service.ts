@@ -134,6 +134,15 @@ export class SecurityService {
             })
             .catch(this.handleError);
     }
+    
+    modifyWxTicket(): Promise<any> {
+       return this.http.put('api/merchant/wxTicket', {})
+            .toPromise()
+            .then(response => {
+                return response.json();
+            })
+            .catch(this.handleError);
+    }
 
     findOpenRanges(): Promise<Merchant> {
         return this.http.get('api/merchant/openRange')
