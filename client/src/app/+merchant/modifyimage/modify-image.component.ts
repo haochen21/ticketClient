@@ -51,7 +51,7 @@ export class MerchantModifyImageComponent implements OnInit, OnDestroy {
                 console.log(user);
                 this.merchant = <Merchant>user;
                 if (this.merchant.imageSource) {
-                    this.imageUrl = URL + '/' + this.merchant.imageSource + '-md/?'+new Date().getTime();
+                    this.imageUrl = URL + '/' + this.merchant.imageSource + '-md?'+new Date().getTime();
                 }
             })
             .catch(error => {

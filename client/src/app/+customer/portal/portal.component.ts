@@ -65,6 +65,8 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     }
 
     scanBarCode(event) {
+        event.stopPropagation();
+        event.preventDefault();
         let _that = this;
         wx.scanQRCode({
             needResult: 1, 
