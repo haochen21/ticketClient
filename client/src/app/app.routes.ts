@@ -20,7 +20,7 @@ import { MerchantCartComponent } from './+merchant/cart/cart.component';
 import { OrderComponent } from './+merchant/order/order.component';
 import { MerchantLockComponent } from './+merchant/lock/lock.component';
 import { MerchantModifyImageComponent } from './+merchant/modifyimage/modify-image.component';
-import { MerchantModifyTicketComponent } from './+merchant/modifyticket/modify-ticket.component';
+import { MerchantModifyQrCodeComponent } from './+merchant/modifyqrcode/modify-qrcode.component';
 
 import { CustomerComponent } from './+customer/customer.component';
 import { CustomerMyComponent } from './+customer/my/my.component';
@@ -63,7 +63,7 @@ export const routes: RouterConfig = [
       { path: 'my', component: MerchantMyComponent },
       { path: 'modifyuser', component: MerchantModifyComponent },
       { path: 'modifyimage', component: MerchantModifyImageComponent },
-      { path: 'modifyticket', component: MerchantModifyTicketComponent },
+      { path: 'modifyQrCode', component: MerchantModifyQrCodeComponent },
       { path: 'lock', component: MerchantLockComponent },
       { path: 'openRange', component: OpenTimeComponent },
       { path: 'account', component: AccountComponent },

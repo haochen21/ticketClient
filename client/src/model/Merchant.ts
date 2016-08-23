@@ -11,7 +11,7 @@ export class Merchant extends User {
     takeByPhone: boolean;
     takeByPhoneSuffix: boolean;
     imageSource: string;
-    wxTicket: string;
+    qrCode: string;
     openRanges: Array<OpenRange>;
     
     concern:boolean;

@@ -15,7 +15,7 @@ import { MerchantCartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { MerchantLockComponent } from './lock/lock.component';
 import { MerchantModifyImageComponent } from './modifyimage/modify-image.component';
-import { MerchantModifyTicketComponent } from './modifyticket/modify-ticket.component';
+import { MerchantModifyQrCodeComponent } from './modifyqrcode/modify-qrcode.component';
 
 // async components must be named routes for WebpackAsyncRoute
 export const routes = {
@@ -25,7 +25,7 @@ export const routes = {
     { path: 'my', component: MerchantMyComponent },
     { path: 'modifyuser', component: MerchantModifyComponent },
     { path: 'modifyimage', component: MerchantModifyImageComponent },
-    { path: 'modifyticket', component: MerchantModifyTicketComponent },
+    { path: 'modifyQrCode', component: MerchantModifyQrCodeComponent },
     { path: 'lock', component: MerchantLockComponent },
     { path: 'openRange',  component: OpenTimeComponent },
     { path: 'account', component: AccountComponent },

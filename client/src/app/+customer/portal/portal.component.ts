@@ -65,35 +65,34 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     }
 
     scanBarCode(event) {
-        event.stopPropagation();
-        event.preventDefault();
         let _that = this;
         wx.scanQRCode({
-            desc: 'scanQRCode desc',
-            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            needResult: 1, 
+            scanType: ["qrCode"], 
             success: function (res) {
-                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                var values = result.split('=');
-                if (values[0] === 'merchant') {
-                    let merchantId = +values[1];
-                    let isNew: boolean = true;
-                    let merchantIds: Array<number> = new Array();
-                    for (let merchant of _that.merchants) {
-                        merchantIds.push(merchant.id);
-                        if (merchantId === merchant.id) {
-                            isNew = false;
-                            break;
+                if (res.errMsg === "scanQRCode:ok") {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    var values = result.split('=');
+                    if (values[0] === 'merchant') {
+                        let merchantId = +values[1];
+                        let isNew: boolean = true;
+                        let merchantIds: Array<number> = new Array();
+                        for (let merchant of _that.merchants) {
+                            merchantIds.push(merchant.id);
+                            if (merchantId === merchant.id) {
+                                isNew = false;
+                                break;
+                            }
                         }
-                    }
-                    if (isNew) {
-                        merchantIds.push(merchantId);
-                        _that.securityService.saveMerchantsOfCustomer(merchantIds).then(result => {
-                            _that.merchants = result;
-                            _that._applicationRef.zone.run(() => _that._applicationRef.tick());
-                        }).catch(error => {
-                            console.log(error);
-                        });
+                        if (isNew) {
+                            merchantIds.push(merchantId);
+                            _that.securityService.saveMerchantsOfCustomer(merchantIds).then(result => {
+                                _that.merchants = result;
+                                _that._applicationRef.zone.run(() => _that._applicationRef.tick());
+                            }).catch(error => {
+                                console.log(error);
+                            });
+                        }
                     }
                 }
             }

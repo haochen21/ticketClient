@@ -135,8 +135,8 @@ export class SecurityService {
             .catch(this.handleError);
     }
     
-    modifyWxTicket(): Promise<any> {
-       return this.http.put('api/merchant/wxTicket', {})
+    modifyQrCode(): Promise<any> {
+       return this.http.put('api/merchant/qrCode', {})
             .toPromise()
             .then(response => {
                 return response.json();

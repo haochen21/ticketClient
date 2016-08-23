@@ -1,8 +1,6 @@
 var request = require("request");
 var config = require("../config");
 
-var wxTicket = require('../weixin/wx-ticket');
-
 exports.login = function (req, res) {
     let loginName = req.body.loginName;
     let password = req.body.password;
@@ -252,31 +250,22 @@ exports.modifyOpen = function (req, res) {
     });
 }
 
-exports.updateMerchantWxTicket = function (req, res) {
+exports.updateMerchantQrCode = function (req, res) {
     let user = req.session.user;
     let id = user.id;
 
-    wxTicket.createTicket(id, function (err, result) {
+    request({
+        url: config.remoteServer + '/security/merchant/qrCode',
+        method: 'POST',
+        form: {
+            id: id
+        }
+    }, function (err, response, body) {
         if (err) {
-            console.error("create ticket error:", err);
+            console.error("modify qrCode error:", err, " (status: " + err.status + ")");
             res.status(404).end();
         } else {
-            console.log('create ticket,merchanId: ' + id + ', ticket is: ' + result.ticket);
-            request({
-                url: config.remoteServer + '/security/merchant/wxTicket',
-                method: 'POST',
-                form: {
-                    id: id,
-                    wxTicket: result.ticket
-                }
-            }, function (err, response, body) {
-                if (err) {
-                    console.error("modify open error:", err, " (status: " + err.status + ")");
-                    res.status(404).end();
-                } else {
-                    res.status(200).send({ ticket: result.ticket });
-                }
-            });
+            res.status(200).send({ qrCode: body });
         }
     });
 

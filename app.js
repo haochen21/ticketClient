@@ -109,8 +109,8 @@ router.route('/password', checkLogin)
     .put(service.security.modifyPassword);
 router.route('/merchant/open')
     .put(service.security.modifyOpen);
-router.route('/merchant/wxTicket')
-    .put(service.security.updateMerchantWxTicket);    
+router.route('/merchant/qrCode')
+    .put(service.security.updateMerchantQrCode);    
 router.route('/merchant/lock')
     .post(service.security.merchantLock);    
 router.route('/merchant/openRange')

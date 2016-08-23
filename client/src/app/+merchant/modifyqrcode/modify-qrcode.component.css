@@ -1,4 +1,4 @@
-.modifyticket-container {
+.modifyqrcode-container {
     outline: 0;
     top: 0;
     left: 0px;
@@ -12,6 +12,6 @@
 img {
     width: 100%;
 }
-.ticket-url {
+.qrcode-url {
     word-break: break-all;
 }

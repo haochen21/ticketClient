@@ -6,16 +6,18 @@ import { SecurityService } from '../../../service/security.service';
 import { Merchant } from '../../../model/Merchant';
 
 
+const URL = 'http://120.25.90.244:8080/ticketServer/security/merchant/image';
+
 @Component({
-    selector: 'modify-ticket',
-    templateUrl: './modify-ticket.component.html',
-    styleUrls: ['./modify-ticket.component.css']
+    selector: 'modify-qrCode',
+    templateUrl: './modify-qrCode.component.html',
+    styleUrls: ['./modify-qrCode.component.css']
 })
-export class MerchantModifyTicketComponent implements OnInit, OnDestroy {
+export class MerchantModifyQrCodeComponent implements OnInit, OnDestroy {
 
     merchant: Merchant = new Merchant();
 
-    ticketUrl: String;
+    qrCodeUrl: String;
 
     constructor(
         private securityService: SecurityService,
@@ -28,8 +30,8 @@ export class MerchantModifyTicketComponent implements OnInit, OnDestroy {
             .then(user => {
                 console.log(user);
                 this.merchant = <Merchant>user;
-                if (this.merchant.wxTicket) {
-                    this.ticketUrl = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + this.merchant.wxTicket;
+                if (this.merchant.qrCode) {
+                    this.qrCodeUrl = URL + '/' + this.merchant.qrCode + '?'+new Date().getTime();
                 }
             })
             .catch(error => {
@@ -43,10 +45,11 @@ export class MerchantModifyTicketComponent implements OnInit, OnDestroy {
 
     createTicket(event) {
         this.securityService
-            .modifyWxTicket()
+            .modifyQrCode()
             .then(value => {
                 console.log(value);
-                this.ticketUrl = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + value.ticket;
+                this.merchant.qrCode = value.qrCode;
+                this.qrCodeUrl = URL + '/' + value.qrCode + '?'+new Date().getTime();
             })
             .catch(error => {
                 console.log(error)
@@ -55,7 +58,4 @@ export class MerchantModifyTicketComponent implements OnInit, OnDestroy {
         event.preventDefault();
     }
 
-    goToMy() {
-        this.router.navigate(['/merchant/my']);
-    }
 }
